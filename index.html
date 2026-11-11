@@ -1,0 +1,1921 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Adam’s Cookbook</title>
+<meta name="description" content="Adam’s personal cookbook – recipes, meal planner and shopping list.">
+<meta name="theme-color" id="themeColor" content="#FBF7F2">
+<meta name="color-scheme" content="light dark">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Cookbook">
+<meta name="application-name" content="Cookbook">
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" id="favicon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23B4532A'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" id="appleIcon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23B4532A'/%3E%3C/svg%3E">
+<!-- Optional web fonts (non-blocking). Without a connection the app falls back to system fonts. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#FBF7F2; --surface:#FFFFFF; --surface-2:#F4EDE4; --surface-3:#EBE1D5;
+  --text:#2A211B; --muted:#6B5F55; --border:#E5DACD; --border-strong:#D3C4B3;
+  --accent:#B0502A; --accent-hover:#9A4422; --accent-soft:#F6E3D8; --accent-ink:#FFFFFF;
+  --good:#3F7A4E; --danger:#B3261E; --danger-soft:#FBE4E2;
+  --shadow-sm:0 1px 2px rgba(60,40,20,.06),0 1px 3px rgba(60,40,20,.08);
+  --shadow:0 4px 14px rgba(60,40,20,.08),0 2px 4px rgba(60,40,20,.05);
+  --shadow-lg:0 18px 50px rgba(50,30,15,.18);
+  --ph-l1:82%; --ph-l2:68%; --ph-s:42%; --ph-ink:rgba(255,255,255,.92);
+  --serif:'Fraunces','Iowan Old Style','Palatino Linotype',Palatino,Georgia,'Times New Roman',serif;
+  --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  --radius:18px; --radius-sm:12px; --radius-xs:8px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --sidebar:252px; --tabbar:68px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#16120F; --surface:#201A16; --surface-2:#2A231E; --surface-3:#352C25;
+    --text:#F3ECE4; --muted:#B9AC9F; --border:#3A3029; --border-strong:#4D4037;
+    --accent:#E4855A; --accent-hover:#EE9A72; --accent-soft:#3D2619; --accent-ink:#1B0F09;
+    --good:#7FC08F; --danger:#F2867E; --danger-soft:#3E1D1A;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.3); --shadow:0 6px 18px rgba(0,0,0,.35); --shadow-lg:0 24px 60px rgba(0,0,0,.55);
+    --ph-l1:34%; --ph-l2:22%; --ph-s:32%; --ph-ink:rgba(255,240,228,.85);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#16120F; --surface:#201A16; --surface-2:#2A231E; --surface-3:#352C25;
+  --text:#F3ECE4; --muted:#B9AC9F; --border:#3A3029; --border-strong:#4D4037;
+  --accent:#E4855A; --accent-hover:#EE9A72; --accent-soft:#3D2619; --accent-ink:#1B0F09;
+  --good:#7FC08F; --danger:#F2867E; --danger-soft:#3E1D1A;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.3); --shadow:0 6px 18px rgba(0,0,0,.35); --shadow-lg:0 24px 60px rgba(0,0,0,.55);
+  --ph-l1:34%; --ph-l2:22%; --ph-s:32%; --ph-ink:rgba(255,240,228,.85);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;transition:background-color .3s var(--ease),color .3s var(--ease)}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:600;line-height:1.15;margin:0;letter-spacing:-.01em;font-optical-sizing:auto}
+p{margin:0}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+img{max-width:100%;display:block}
+[hidden]{display:none!important}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--accent);color:var(--accent-ink);padding:10px 16px;border-radius:10px;font-weight:600;text-decoration:none;transition:top .2s}
+.skip:focus{top:12px}
+.icon{width:20px;height:20px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.icon.sm{width:16px;height:16px}.icon.lg{width:24px;height:24px}
+
+/* ---------- Layout ---------- */
+.app{min-height:100vh;min-height:100dvh}
+.sidebar{display:none}
+.topbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:8px;padding:calc(10px + env(safe-area-inset-top)) 16px 10px;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid transparent;transition:border-color .2s}
+.topbar.scrolled{border-bottom-color:var(--border)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--serif);font-weight:600;font-size:1.05rem;letter-spacing:-.01em;min-width:0}
+.brand span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand-mark{width:34px;height:34px;border-radius:10px;flex:none;box-shadow:var(--shadow-sm)}
+.topbar .spacer{flex:1}
+main{padding:8px 16px calc(var(--tabbar) + 32px + env(safe-area-inset-bottom));max-width:1200px;margin:0 auto;outline:none}
+.view{animation:viewIn .35s var(--ease) both}
+@keyframes viewIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:repeat(5,1fr);align-items:center;height:calc(var(--tabbar) + env(safe-area-inset-bottom));padding:0 6px env(safe-area-inset-bottom);background:color-mix(in srgb,var(--surface) 90%,transparent);backdrop-filter:saturate(1.4) blur(16px);-webkit-backdrop-filter:saturate(1.4) blur(16px);border-top:1px solid var(--border)}
+.tab{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;height:100%;text-decoration:none;font-size:.7rem;font-weight:600;color:var(--muted);border-radius:12px;transition:color .2s}
+.tab .icon{width:22px;height:22px}
+.tab[aria-current="page"]{color:var(--accent)}
+.tab[aria-current="page"]::before{content:"";position:absolute;top:6px;width:36px;height:30px;border-radius:999px;background:var(--accent-soft);z-index:-1;animation:pop .3s var(--ease)}
+.tab-add{justify-self:center;width:52px;height:52px;border-radius:18px;display:grid;place-items:center;background:var(--accent);color:var(--accent-ink);box-shadow:0 6px 16px color-mix(in srgb,var(--accent) 40%,transparent);text-decoration:none;transition:transform .2s var(--ease)}
+.tab-add:active{transform:scale(.94)}
+.tab-add .icon{width:26px;height:26px;stroke-width:2.2}
+.badge{position:absolute;top:8px;left:calc(50% + 6px);min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-size:.68rem;font-weight:700;display:grid;place-items:center;line-height:1}
+@keyframes pop{from{transform:scale(.6);opacity:0}to{transform:none;opacity:1}}
+
+@media (min-width:900px){
+  .topbar,.tabbar{display:none}
+  .sidebar{display:flex;flex-direction:column;gap:6px;position:fixed;inset:0 auto 0 0;width:var(--sidebar);padding:24px 16px;background:var(--surface);border-right:1px solid var(--border);z-index:30}
+  .sidebar .brand{padding:4px 6px 18px;font-size:1.12rem}
+  .sidebar .brand-mark{width:40px;height:40px;border-radius:12px}
+  .nav-link{position:relative;display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:12px;text-decoration:none;font-weight:500;color:var(--muted);transition:background .2s,color .2s}
+  .nav-link:hover{background:var(--surface-2);color:var(--text)}
+  .nav-link[aria-current="page"]{background:var(--accent-soft);color:var(--accent);font-weight:600}
+  .nav-link .count{margin-left:auto;font-size:.75rem;font-weight:700;background:var(--accent);color:var(--accent-ink);border-radius:999px;padding:1px 8px}
+  .sidebar .grow{flex:1}
+  .search kbd{display:inline-block}
+  .search input:not(:placeholder-shown) + kbd{display:none}
+  .sidebar .side-actions{display:flex;flex-direction:column;gap:8px;margin:14px 0}
+  .side-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 6px 0;border-top:1px solid var(--border);font-size:.8rem;color:var(--muted)}
+  kbd{font-family:var(--sans);font-size:.75rem;border:1px solid var(--border-strong);border-bottom-width:2px;border-radius:6px;padding:1px 6px;background:var(--surface-2);color:var(--text)}
+  main{margin-left:var(--sidebar);padding:36px 44px 64px;max-width:calc(1200px + var(--sidebar))}
+  .app main{margin-left:var(--sidebar);margin-right:0}
+}
+@media (min-width:1500px){ main{margin-left:calc(var(--sidebar) + (100vw - var(--sidebar) - 1200px)/2)!important} }
+
+/* ---------- Buttons & inputs ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--border-strong);background:var(--surface);color:var(--text);font-weight:600;font-size:.95rem;text-decoration:none;white-space:nowrap;transition:background .2s,border-color .2s,transform .15s var(--ease),box-shadow .2s;user-select:none}
+.btn:hover{background:var(--surface-2)}
+.btn:active{transform:scale(.97)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);box-shadow:0 4px 14px color-mix(in srgb,var(--accent) 28%,transparent)}
+.btn.primary:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
+.btn.ghost{background:transparent;border-color:transparent}
+.btn.ghost:hover{background:var(--surface-2)}
+.btn.danger{color:var(--danger);border-color:color-mix(in srgb,var(--danger) 40%,transparent)}
+.btn.danger:hover{background:var(--danger-soft)}
+.btn.danger.solid{background:var(--danger);color:#fff;border-color:var(--danger)}
+.btn.sm{min-height:36px;padding:0 14px;font-size:.85rem}
+.btn.block{width:100%}
+.btn[disabled]{opacity:.5;pointer-events:none}
+.icon-btn{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:999px;border:1px solid transparent;background:transparent;color:var(--text);transition:background .2s,transform .15s var(--ease),color .2s}
+.icon-btn:hover{background:var(--surface-2)}
+.icon-btn:active{transform:scale(.92)}
+.icon-btn.outline{border-color:var(--border-strong);background:var(--surface)}
+.icon-btn.sm{width:36px;height:36px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field>label,.label{font-size:.82rem;font-weight:600;color:var(--muted);letter-spacing:.01em}
+.input,select.input,textarea.input{width:100%;min-height:46px;padding:10px 14px;border-radius:var(--radius-sm);border:1px solid var(--border-strong);background:var(--surface);color:var(--text);transition:border-color .2s,box-shadow .2s;font-size:1rem}
+textarea.input{min-height:110px;resize:vertical;line-height:1.5}
+.input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 18%,transparent)}
+.input[aria-invalid="true"]{border-color:var(--danger)}
+.hint{font-size:.8rem;color:var(--muted)}
+.error-msg{font-size:.82rem;color:var(--danger);font-weight:600}
+select.input{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23887766' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:38px}
+.seg{display:inline-flex;padding:4px;border-radius:999px;background:var(--surface-2);border:1px solid var(--border);gap:2px}
+.seg button{border:0;background:transparent;padding:6px 14px;border-radius:999px;font-size:.85rem;font-weight:600;color:var(--muted);min-height:34px;transition:background .2s,color .2s}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--text);box-shadow:var(--shadow-sm)}
+.chip{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--border-strong);background:var(--surface);font-size:.86rem;font-weight:600;color:var(--text);white-space:nowrap;transition:all .2s}
+.chip:hover{border-color:var(--accent)}
+.chip[aria-pressed="true"]{background:var(--text);border-color:var(--text);color:var(--bg)}
+.tag{display:inline-flex;align-items:center;padding:3px 10px;border-radius:999px;background:var(--surface-2);color:var(--muted);font-size:.78rem;font-weight:600;text-decoration:none;border:1px solid var(--border)}
+a.tag:hover{color:var(--accent);border-color:var(--accent)}
+
+/* ---------- Page headers ---------- */
+.page-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin:8px 0 22px}
+.page-head h1{font-size:clamp(1.9rem,5vw,2.8rem)}
+.eyebrow{font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.sub{color:var(--muted);margin-top:6px}
+.section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:30px 0 14px}
+.section-title h2{font-size:1.35rem}
+
+/* ---------- Library ---------- */
+.toolbar{display:flex;flex-direction:column;gap:12px;margin-bottom:22px}
+.search{position:relative}
+.search .icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+.search input{padding-left:46px;padding-right:56px;min-height:52px;border-radius:999px;font-size:1rem;box-shadow:var(--shadow-sm)}
+.search kbd{display:none;position:absolute;right:16px;top:50%;transform:translateY(-50%)}
+.search .clear{position:absolute;right:6px;top:50%;transform:translateY(-50%)}
+.filters{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px 2px 4px;margin:0 -16px;padding-inline:16px;scroll-padding-inline:16px}
+.filters::-webkit-scrollbar{display:none}
+.filter-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.filter-row .selects{display:flex;gap:8px;flex-wrap:wrap}
+.filter-row select.input{min-height:40px;width:auto;border-radius:999px;font-size:.88rem;padding:6px 36px 6px 14px}
+.result-count{font-size:.88rem;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:14px}
+@media (min-width:600px){.grid{grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:22px}}
+.card{position:relative;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);transition:transform .3s var(--ease),box-shadow .3s var(--ease);animation:viewIn .4s var(--ease) both}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.card:focus-within{box-shadow:0 0 0 3px var(--accent)}
+.card-link{position:absolute;inset:0;z-index:1;border-radius:var(--radius)}
+.card-link:focus-visible{outline:none}
+.card-media{aspect-ratio:4/3;overflow:hidden;background:var(--surface-2)}
+.card-media img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.card:hover .card-media img{transform:scale(1.04)}
+.card-body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:4px}
+.card-body h3{font-size:1.08rem;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-body .eyebrow{font-size:.66rem}
+.meta{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;color:var(--muted);font-size:.8rem;margin-top:4px}
+.meta span{display:inline-flex;align-items:center;gap:5px}
+.fav-btn{position:absolute;top:10px;right:10px;z-index:2;width:38px;height:38px;border-radius:999px;border:0;display:grid;place-items:center;background:color-mix(in srgb,var(--surface) 88%,transparent);backdrop-filter:blur(6px);color:var(--muted);box-shadow:var(--shadow-sm);transition:transform .2s var(--ease),color .2s}
+.fav-btn:hover{transform:scale(1.08);color:var(--accent)}
+.fav-btn[aria-pressed="true"]{color:#E0473A}
+.fav-btn[aria-pressed="true"] .icon{fill:currentColor;animation:heart .4s var(--ease)}
+@keyframes heart{0%{transform:scale(1)}40%{transform:scale(1.35)}100%{transform:scale(1)}}
+.ph{position:relative;width:100%;height:100%;display:grid;place-items:center;overflow:hidden;background:radial-gradient(120% 90% at 20% 10%,hsl(var(--h) var(--ph-s) var(--ph-l1)),hsl(calc(var(--h) + 18) var(--ph-s) var(--ph-l2)))}
+.ph svg.pattern{position:absolute;inset:0;width:100%;height:100%;opacity:.28;color:var(--ph-ink)}
+.ph .initial{position:relative;font-family:var(--serif);font-size:clamp(2.6rem,9vw,4.2rem);font-weight:600;color:var(--ph-ink);font-style:italic;text-shadow:0 2px 12px rgba(0,0,0,.08)}
+.ph.big .initial{font-size:clamp(4rem,14vw,7rem)}
+.recent{display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:2px 16px 6px}
+.recent::-webkit-scrollbar{display:none}
+.recent a{flex:none;display:flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;border-radius:999px;background:var(--surface);border:1px solid var(--border);text-decoration:none;font-weight:600;font-size:.88rem;max-width:240px;transition:border-color .2s}
+.recent a:hover{border-color:var(--accent)}
+.recent .thumb{width:34px;height:34px;border-radius:999px;overflow:hidden;flex:none}
+.recent .thumb img{width:100%;height:100%;object-fit:cover}
+.recent .thumb .initial{font-size:1rem}
+.recent span.t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.empty{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;padding:40px 20px 30px;max-width:760px;margin:0 auto}
+.empty .illus{width:min(260px,70vw);height:auto;margin-bottom:6px}
+.empty h2{font-size:clamp(1.7rem,5vw,2.3rem)}
+.empty p{color:var(--muted);max-width:44ch}
+.empty .actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:8px}
+.empty-card{border:1.5px dashed var(--border-strong);border-radius:var(--radius);background:color-mix(in srgb,var(--surface) 60%,transparent)}
+.hello{background:linear-gradient(135deg,var(--accent-soft),transparent 70%);border:1px solid var(--border);border-radius:24px;padding:26px 24px;margin-bottom:22px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+.hello h1{font-size:clamp(1.8rem,5vw,2.6rem)}
+.feature-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:22px;width:100%;text-align:left}
+.feature{display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:14px;background:var(--surface);border:1px solid var(--border)}
+.feature .ic{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);flex:none}
+.feature b{display:block;font-size:.92rem}
+.feature span{font-size:.82rem;color:var(--muted)}
+
+/* ---------- Recipe page ---------- */
+.r-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
+.r-top .right{display:flex;gap:6px}
+.r-hero{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:16/10;max-height:440px;width:100%;box-shadow:var(--shadow);background:var(--surface-2)}
+@media (min-width:900px){.r-hero{aspect-ratio:21/9}.r-hero:has(.ph){aspect-ratio:3/1}}
+.r-hero img{width:100%;height:100%;object-fit:cover}
+.r-head{margin:24px 0 8px;max-width:780px}
+.r-head h1{font-size:clamp(2rem,6vw,3.2rem);margin:8px 0 10px}
+.r-head .desc{font-size:1.08rem;color:var(--muted);max-width:62ch}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:10px;margin:22px 0 14px}
+.stat{padding:12px 14px;border-radius:14px;background:var(--surface);border:1px solid var(--border)}
+.stat .k{display:flex;align-items:center;gap:6px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.stat .v{font-family:var(--serif);font-size:1.25rem;font-weight:600;margin-top:2px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.cooked-line{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.9rem;margin-top:12px}
+.cooked-line .icon{color:var(--good)}
+.r-actions{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 26px;padding-bottom:22px;border-bottom:1px solid var(--border)}
+.r-grid{display:grid;gap:28px}
+@media (min-width:980px){.r-grid{grid-template-columns:minmax(300px,380px) 1fr;gap:44px;align-items:start}.r-grid .ingredients{position:sticky;top:24px}}
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px}
+.panel h2{font-size:1.45rem}
+.ing-controls{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin:14px 0 6px}
+.stepper{display:inline-flex;align-items:center;gap:2px;border:1px solid var(--border-strong);border-radius:999px;padding:3px;background:var(--surface)}
+.stepper output{min-width:74px;text-align:center;font-weight:700;font-size:.92rem}
+.stepper .icon-btn{width:34px;height:34px}
+.ing-group h3{font-family:var(--sans);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:18px 0 4px;font-weight:700}
+.ing-list{list-style:none;margin:0;padding:0}
+.ing-list li{border-bottom:1px solid var(--border)}
+.ing-list li:last-child{border-bottom:0}
+.check{display:flex;align-items:flex-start;gap:12px;padding:11px 2px;cursor:pointer}
+.check input{appearance:none;-webkit-appearance:none;width:22px;height:22px;border-radius:7px;border:2px solid var(--border-strong);flex:none;margin:1px 0 0;display:grid;place-items:center;transition:all .2s var(--ease);background:var(--surface)}
+.check input::after{content:"";width:6px;height:11px;border:solid var(--accent-ink);border-width:0 2.5px 2.5px 0;transform:rotate(45deg) scale(0);margin-top:-2px;transition:transform .2s var(--ease)}
+.check input:checked{background:var(--accent);border-color:var(--accent)}
+.check input:checked::after{transform:rotate(45deg) scale(1)}
+.check input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.check .txt{transition:opacity .2s,color .2s}
+.check input:checked + .txt{opacity:.5;text-decoration:line-through;text-decoration-thickness:1px}
+.qty{font-weight:700}
+.note{color:var(--muted)}
+.method h2{font-size:1.45rem;margin-bottom:8px}
+.steps{list-style:none;margin:0;padding:0;counter-reset:step}
+.steps li{position:relative;display:grid;grid-template-columns:44px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:opacity .25s}
+.steps li:last-child{border-bottom:0}
+.step-num{width:40px;height:40px;border-radius:999px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);font-family:var(--serif);font-weight:700;font-size:1.1rem;transition:all .25s}
+.steps li.done{opacity:.5}
+.steps li.done .step-num{background:var(--good);color:#fff}
+.step-text{font-size:1.04rem;line-height:1.65;padding-top:6px}
+.timer-chip{display:inline-flex;align-items:center;gap:6px;margin-top:10px;min-height:34px;padding:0 12px;border-radius:999px;border:1px solid var(--border-strong);background:var(--surface);font-size:.84rem;font-weight:600;color:var(--text);transition:all .2s;position:relative;z-index:1}
+.timer-chip:hover{border-color:var(--accent);color:var(--accent)}
+.timer-chip.running{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.box{margin-top:26px;padding:18px 20px;border-radius:var(--radius);background:var(--surface-2);border:1px solid var(--border)}
+.box h3{font-size:1.15rem;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.box p{white-space:pre-wrap}
+.notes-area{background:var(--surface)}
+.saved-hint{font-size:.78rem;color:var(--muted);margin-top:6px;min-height:1.2em}
+.print-only{display:none}
+
+/* ---------- Form ---------- */
+.form{display:grid;gap:22px;max-width:880px}
+.form-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px}
+.form-section>h2{font-size:1.3rem;margin-bottom:4px}
+.form-section>.hint{margin-bottom:14px}
+.row{display:grid;gap:14px}
+@media (min-width:640px){.row.c2{grid-template-columns:1fr 1fr}.row.c3{grid-template-columns:1fr 1fr 1fr}.row.c4{grid-template-columns:repeat(4,1fr)}}
+.ing-edit-group{border:1px solid var(--border);border-radius:14px;padding:12px;margin-bottom:12px;background:var(--surface-2)}
+.ing-edit-group .ghead{display:flex;gap:8px;align-items:center;margin-bottom:10px}
+.ing-row{display:grid;grid-template-columns:72px 84px 1fr auto;gap:6px;align-items:center;margin-bottom:6px;animation:viewIn .25s var(--ease)}
+.ing-row .note-in{grid-column:1 / 4}
+.ing-row .row-tools{grid-row:1 / 3;grid-column:4;display:flex;flex-direction:column;gap:2px}
+@media (min-width:700px){.ing-row{grid-template-columns:80px 96px 1.5fr 1fr auto}.ing-row .note-in{grid-column:auto}.ing-row .row-tools{grid-row:auto;grid-column:auto;flex-direction:row}}
+.ing-row .input{min-height:42px;padding:8px 10px;font-size:.95rem}
+.step-row{display:grid;grid-template-columns:32px 1fr auto;gap:10px;align-items:start;margin-bottom:12px;animation:viewIn .25s var(--ease)}
+.step-row .num{width:32px;height:32px;border-radius:999px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-weight:700;font-family:var(--serif);margin-top:6px}
+.step-row textarea.input{min-height:76px}
+.step-row .timer-in{display:flex;align-items:center;gap:8px;margin-top:6px;font-size:.85rem;color:var(--muted)}
+.step-row .timer-in input{width:90px;min-height:38px;padding:6px 10px}
+.row-tools{display:flex;gap:2px}
+.row-tools .icon-btn{width:34px;height:34px;color:var(--muted)}
+.row-tools .icon-btn:hover{color:var(--text)}
+.row-tools .icon-btn.del:hover{color:var(--danger);background:var(--danger-soft)}
+.photo-drop{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.photo-prev{width:160px;aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:var(--surface-2);border:1px solid var(--border)}
+.photo-prev img{width:100%;height:100%;object-fit:cover}
+.importer{background:linear-gradient(135deg,var(--accent-soft),var(--surface) 80%);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px}
+.importer summary{cursor:pointer;font-weight:700;display:flex;align-items:center;gap:10px;list-style:none;font-family:var(--serif);font-size:1.15rem}
+.importer summary::-webkit-details-marker{display:none}
+.importer summary .chev{margin-left:auto;transition:transform .2s}
+.importer[open] summary .chev{transform:rotate(180deg)}
+.importer textarea{min-height:200px;margin-top:12px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88rem}
+.form-actions{position:sticky;bottom:calc(var(--tabbar) + env(safe-area-inset-bottom) + 10px);z-index:5;display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;padding:12px;border-radius:999px;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(12px);border:1px solid var(--border);box-shadow:var(--shadow)}
+@media (min-width:900px){.form-actions{bottom:16px}}
+.form-actions .left{margin-right:auto}
+.switch{display:flex;align-items:center;gap:10px;font-weight:600;cursor:pointer}
+.switch input{appearance:none;-webkit-appearance:none;width:46px;height:28px;border-radius:999px;background:var(--border-strong);position:relative;transition:background .2s;margin:0;flex:none}
+.switch input::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:999px;background:#fff;box-shadow:var(--shadow-sm);transition:transform .2s var(--ease)}
+.switch input:checked{background:var(--accent)}
+.switch input:checked::after{transform:translateX(18px)}
+
+/* ---------- Shopping ---------- */
+.shop-add{display:flex;gap:8px;margin-bottom:18px}
+.shop-add .input{border-radius:999px;min-height:50px;padding-left:18px}
+.shop-list{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.shop-list li{display:flex;align-items:center;gap:8px;padding:0 8px 0 16px;border-bottom:1px solid var(--border);animation:viewIn .25s var(--ease)}
+.shop-list li:last-child{border-bottom:0}
+.shop-list .check{flex:1;padding:14px 0}
+.shop-list .from{display:block;font-size:.76rem;color:var(--muted);margin-top:2px}
+.shop-actions{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+
+/* ---------- Planner ---------- */
+.week-nav{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.week-nav .label{font-family:var(--serif);font-size:1.15rem;font-weight:600;min-width:170px;text-align:center}
+.days{display:grid;gap:14px}
+@media (min-width:700px){.days{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1200px){.days{grid-template-columns:repeat(3,1fr)}}
+.day{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;animation:viewIn .35s var(--ease) both}
+.day.today{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.day-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px}
+.day-head h3{font-size:1.2rem}
+.day-head .date{font-size:.82rem;color:var(--muted);font-weight:600}
+.today-pill{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--accent-ink);border-radius:999px;padding:2px 8px;margin-left:8px;vertical-align:middle;font-family:var(--sans)}
+.meal{display:grid;grid-template-columns:84px 1fr;gap:8px;align-items:start;padding:8px 0;border-top:1px solid var(--border)}
+.meal .mlabel{font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-top:8px}
+.meal .entries{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.entry{display:inline-flex;align-items:center;gap:4px;max-width:100%;padding:3px 4px 3px 12px;border-radius:999px;background:var(--accent-soft);color:var(--text);font-size:.86rem;font-weight:600}
+.entry a{text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.entry a:hover{text-decoration:underline}
+.entry.note-entry{background:var(--surface-2);font-style:italic;font-weight:500}
+.entry .icon-btn{width:28px;height:28px}
+.entry small{color:var(--muted);font-weight:600}
+.add-slot{display:inline-flex;align-items:center;gap:4px;min-height:32px;padding:0 10px;border-radius:999px;border:1.5px dashed var(--border-strong);background:transparent;color:var(--muted);font-size:.82rem;font-weight:600;transition:all .2s}
+.add-slot:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ---------- Settings ---------- */
+.settings{display:grid;gap:16px;max-width:760px}
+.set-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border)}
+.set-row:last-child{border-bottom:0}
+.set-row .t b{display:block}
+.set-row .t span{font-size:.85rem;color:var(--muted)}
+
+/* ---------- Modal ---------- */
+.modal-backdrop{position:fixed;inset:0;z-index:80;background:rgba(20,12,6,.45);backdrop-filter:blur(3px);display:flex;align-items:flex-end;justify-content:center;animation:fade .2s ease both}
+@media (min-width:640px){.modal-backdrop{align-items:center;padding:20px}}
+.modal{width:100%;max-width:520px;max-height:88vh;display:flex;flex-direction:column;background:var(--surface);border-radius:24px 24px 0 0;box-shadow:var(--shadow-lg);animation:sheet .32s var(--ease) both;padding-bottom:env(safe-area-inset-bottom)}
+@media (min-width:640px){.modal{border-radius:24px;animation:popIn .25s var(--ease) both}}
+.modal header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:18px 20px 8px}
+.modal header h2{font-size:1.35rem}
+.modal .mbody{padding:6px 20px 12px;overflow:auto}
+.modal footer{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;padding:12px 20px 18px}
+.pick-list{list-style:none;margin:10px 0 0;padding:0;max-height:44vh;overflow:auto;display:grid;gap:6px}
+.pick-list button{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:8px;border-radius:12px;border:1px solid var(--border);background:var(--surface);transition:all .15s}
+.pick-list button:hover,.pick-list button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.pick-list .thumb{width:44px;height:44px;border-radius:10px;overflow:hidden;flex:none}
+.pick-list .thumb img{width:100%;height:100%;object-fit:cover}
+.pick-list .thumb .initial{font-size:1.2rem}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes sheet{from{transform:translateY(100%)}to{transform:none}}
+@keyframes popIn{from{opacity:0;transform:scale(.96) translateY(8px)}to{opacity:1;transform:none}}
+
+/* ---------- Toasts & timers ---------- */
+.toasts{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(var(--tabbar) + 16px + env(safe-area-inset-bottom));z-index:120;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none;width:min(92vw,440px)}
+@media (min-width:900px){.toasts{bottom:24px;left:calc(50% + var(--sidebar)/2)}}
+.toast{pointer-events:auto;display:flex;align-items:center;gap:12px;padding:12px 14px 12px 18px;border-radius:16px;background:var(--text);color:var(--bg);box-shadow:var(--shadow-lg);font-weight:500;font-size:.92rem;animation:toastIn .3s var(--ease) both;max-width:100%}
+.toast.error{background:var(--danger);color:#fff}
+.toast button{border:0;background:transparent;color:inherit;font-weight:700;text-decoration:underline;padding:4px 6px}
+.toast.out{animation:toastOut .25s ease both}
+@keyframes toastIn{from{opacity:0;transform:translateY(12px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes toastOut{to{opacity:0;transform:translateY(8px)}}
+.timer-dock{position:fixed;right:16px;top:calc(70px + env(safe-area-inset-top));z-index:90;display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+@media (min-width:900px){.timer-dock{top:20px;right:24px}}
+.tdock{display:flex;align-items:center;gap:10px;padding:8px 8px 8px 14px;border-radius:999px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);font-weight:600;font-size:.88rem;animation:toastIn .3s var(--ease) both;max-width:min(88vw,340px)}
+.tdock .time{font-variant-numeric:tabular-nums;font-size:1.05rem;color:var(--accent);font-weight:700}
+.tdock .lbl{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--muted);font-size:.8rem}
+.tdock.done{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);animation:ring 1s ease-in-out infinite}
+.tdock.done .time,.tdock.done .lbl{color:var(--accent-ink)}
+.tdock .icon-btn{width:32px;height:32px;color:inherit}
+body.cooking .timer-dock{top:calc(78px + env(safe-area-inset-top));right:50%;transform:translateX(50%);align-items:center}
+body.cooking .toasts{left:50%!important;bottom:calc(100px + env(safe-area-inset-bottom))}
+@keyframes ring{0%,100%{transform:rotate(0)}10%,30%{transform:rotate(-3deg)}20%,40%{transform:rotate(3deg)}50%{transform:rotate(0)}}
+
+/* ---------- Cook mode ---------- */
+.cook{position:fixed;inset:0;z-index:70;background:var(--bg);display:flex;flex-direction:column;animation:fade .25s ease both}
+.cook-head{display:flex;align-items:center;gap:10px;padding:calc(12px + env(safe-area-inset-top)) 16px 10px}
+.cook-head .title{flex:1;min-width:0}
+.cook-head .title b{display:block;font-family:var(--serif);font-size:1.1rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cook-head .title span{font-size:.8rem;color:var(--muted);font-weight:600}
+.cook-progress{height:4px;background:var(--surface-3);margin:0 16px;border-radius:999px;overflow:hidden}
+.cook-progress span{display:block;height:100%;background:var(--accent);border-radius:999px;transition:width .4s var(--ease)}
+.cook-stage{flex:1;overflow:auto;display:flex;align-items:center;justify-content:center;padding:24px 22px;touch-action:pan-y}
+.cook-step{max-width:900px;width:100%}
+.cook-step.from-right{animation:slideR .35s var(--ease) both}
+.cook-step.from-left{animation:slideL .35s var(--ease) both}
+@keyframes slideR{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+@keyframes slideL{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:none}}
+.cook-num{font-family:var(--serif);font-style:italic;color:var(--accent);font-size:clamp(1.2rem,3vw,1.6rem);font-weight:600;margin-bottom:14px}
+.cook-text{font-family:var(--serif);font-size:clamp(1.55rem,4.6vw,2.7rem);line-height:1.35;font-weight:400;letter-spacing:-.01em}
+.cook-timer{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.cook-timer .btn{min-height:56px;font-size:1.1rem;padding:0 24px}
+.big-time{font-variant-numeric:tabular-nums;font-size:clamp(2.4rem,8vw,4rem);font-weight:700;color:var(--accent);font-family:var(--sans);letter-spacing:-.02em}
+.cook-foot{display:flex;gap:10px;align-items:center;padding:12px 16px calc(14px + env(safe-area-inset-bottom));border-top:1px solid var(--border)}
+.cook-foot .btn{min-height:56px;font-size:1.05rem;flex:1}
+.cook-foot .btn.primary{flex:2}
+.wake{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;color:var(--muted);font-weight:600}
+.wake i{width:8px;height:8px;border-radius:999px;background:var(--muted);display:inline-block}
+.wake.on i{background:var(--good);box-shadow:0 0 0 3px color-mix(in srgb,var(--good) 25%,transparent)}
+.drawer-back{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:75;animation:fade .2s both}
+.drawer{position:fixed;z-index:76;left:0;right:0;bottom:0;max-height:78vh;overflow:auto;background:var(--surface);border-radius:24px 24px 0 0;box-shadow:var(--shadow-lg);padding:8px 20px calc(20px + env(safe-area-inset-bottom));animation:sheet .3s var(--ease) both}
+.drawer .grab{width:44px;height:5px;border-radius:999px;background:var(--border-strong);margin:6px auto 12px}
+@media (min-width:900px){.drawer{left:auto;top:0;bottom:0;width:420px;max-height:none;border-radius:24px 0 0 24px;animation:drawerR .3s var(--ease) both}.drawer .grab{display:none}}
+@keyframes drawerR{from{transform:translateX(100%)}to{transform:none}}
+@media (max-width:600px){.cook-head .wake span{display:none}.cook-head .btn span{display:none}.cook-head .btn{width:44px;padding:0}.cook-text{font-size:1.75rem}}
+.finish{text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px}
+.finish .big{font-size:4rem}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* ---------- Print ---------- */
+@media print{
+  @page{margin:16mm}
+  :root{--bg:#fff;--surface:#fff;--surface-2:#fff;--text:#000;--muted:#444;--border:#ccc;--accent:#000;--accent-soft:#fff}
+  body{background:#fff;color:#000;font-size:11pt}
+  .sidebar,.topbar,.tabbar,.no-print,.toasts,.timer-dock,.r-actions,.r-top,.fav-btn,.timer-chip,.ing-controls,.notes-wrap,.skip{display:none!important}
+  main{margin:0!important;padding:0!important;max-width:none}
+  .view{animation:none}
+  .r-hero{max-height:220px;aspect-ratio:auto;height:200px;box-shadow:none;border-radius:10px}
+  .r-hero .ph{display:none}
+  .r-hero:has(.ph){display:none}
+  .r-head h1{font-size:24pt}
+  .stats{grid-template-columns:repeat(5,1fr)}
+  .stat{border:1px solid #ccc;padding:6px 8px}
+  .r-grid{grid-template-columns:34% 1fr!important;gap:24px}
+  .r-grid .ingredients{position:static}
+  .panel{border:0;padding:0}
+  .check input{display:none}
+  .check{padding:4px 0}
+  .ing-list li{border:0}
+  .steps li{break-inside:avoid;padding:8px 0;border:0;opacity:1!important}
+  .step-num{background:#fff;border:1.5px solid #000;color:#000;width:28px;height:28px;font-size:10pt}
+  .print-only{display:block}
+  .box{background:#fff;border:1px solid #ccc;break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M10 11v6M14 11v6"/></symbol>
+    <symbol id="i-print" viewBox="0 0 24 24"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></symbol>
+    <symbol id="i-shuffle" viewBox="0 0 24 24"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></symbol>
+    <symbol id="i-timer" viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="m7 4 12 8-12 8V4z"/></symbol>
+    <symbol id="i-flame" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></symbol>
+    <symbol id="i-clipboard" viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></symbol>
+    <symbol id="i-utensils" viewBox="0 0 24 24"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2M7 2v20M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></symbol>
+    <symbol id="i-gauge" viewBox="0 0 24 24"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></symbol>
+    <symbol id="i-done" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></symbol>
+    <symbol id="i-note" viewBox="0 0 24 24"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2zM9 13h6M9 17h4"/></symbol>
+    <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.9 5.8L20 10l-6.1 1.2L12 17l-1.9-5.8L4 10l6.1-1.2Z"/><path d="M19 17v4M17 19h4"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.74V16h8v-1.26A7 7 0 0 0 12 2z"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+  </defs>
+</svg>
+
+<div class="app">
+  <aside class="sidebar" aria-label="Main navigation">
+    <a class="brand" href="#/"><img class="brand-mark" alt="" data-icon><span data-name>Adam’s Cookbook</span></a>
+    <nav aria-label="Sections" style="display:flex;flex-direction:column;gap:4px">
+      <a class="nav-link" href="#/" data-nav="library"><svg class="icon"><use href="#i-book"/></svg>Recipes</a>
+      <a class="nav-link" href="#/planner" data-nav="planner"><svg class="icon"><use href="#i-calendar"/></svg>Meal planner</a>
+      <a class="nav-link" href="#/shopping" data-nav="shopping"><svg class="icon"><use href="#i-cart"/></svg>Shopping list<span class="count" data-shopcount hidden></span></a>
+      <a class="nav-link" href="#/more" data-nav="more"><svg class="icon"><use href="#i-sliders"/></svg>Settings &amp; backup</a>
+    </nav>
+    <div class="side-actions">
+      <a class="btn primary" href="#/new"><svg class="icon"><use href="#i-plus"/></svg>New recipe</a>
+      <button class="btn" data-action="random" data-random-btn hidden><svg class="icon"><use href="#i-shuffle"/></svg>What should I cook?</button>
+    </div>
+    <div class="grow"></div>
+    <div class="side-foot"><span>Press <kbd>/</kbd> to search</span><button class="icon-btn sm" data-action="toggle-theme" aria-label="Switch light/dark mode"><svg class="icon"><use href="#i-moon" data-theme-icon/></svg></button></div>
+  </aside>
+
+  <header class="topbar">
+    <a class="brand" href="#/"><img class="brand-mark" alt="" data-icon><span data-name>Adam’s Cookbook</span></a>
+    <span class="spacer"></span>
+    <button class="icon-btn" data-action="random" data-random-btn hidden aria-label="What should I cook? Pick a random recipe"><svg class="icon"><use href="#i-shuffle"/></svg></button>
+    <button class="icon-btn" data-action="focus-search" aria-label="Search recipes"><svg class="icon"><use href="#i-search"/></svg></button>
+    <button class="icon-btn" data-action="toggle-theme" aria-label="Switch light/dark mode"><svg class="icon"><use href="#i-moon" data-theme-icon/></svg></button>
+  </header>
+
+  <main id="main" tabindex="-1"></main>
+
+  <nav class="tabbar" aria-label="Sections">
+    <a class="tab" href="#/" data-nav="library"><svg class="icon"><use href="#i-book"/></svg>Recipes</a>
+    <a class="tab" href="#/planner" data-nav="planner"><svg class="icon"><use href="#i-calendar"/></svg>Planner</a>
+    <a class="tab-add" href="#/new" aria-label="Add a recipe"><svg class="icon"><use href="#i-plus"/></svg></a>
+    <a class="tab" href="#/shopping" data-nav="shopping"><svg class="icon"><use href="#i-cart"/></svg>Shopping<span class="badge" data-shopcount hidden></span></a>
+    <a class="tab" href="#/more" data-nav="more"><svg class="icon"><use href="#i-sliders"/></svg>More</a>
+  </nav>
+</div>
+
+<div id="cook" class="cook" hidden role="dialog" aria-modal="true" aria-label="Cook mode"></div>
+<div id="modalRoot"></div>
+<div id="timerDock" class="timer-dock" aria-live="polite"></div>
+<div id="toasts" class="toasts" role="status" aria-live="polite"></div>
+<input type="file" id="importFile" accept="application/json,.json" hidden>
+
+<script>
+/* =====================================================================
+   ADAM'S RECIPES – edit this list to build recipes into the app itself.
+   ---------------------------------------------------------------------
+   Leave it empty ([]) and the app starts as an empty cookbook.
+   Recipes added inside the app are saved on that device (localStorage)
+   and merged with this list. Settings → "Export recipes for the built-in
+   list" produces ready-to-paste entries in exactly this format.
+
+   Recipe schema (only "id" and "title" are required):
+   {
+     id:          "spaghetti-bolognese",     // unique, text
+     title:       "Spaghetti Bolognese",
+     description: "Short intro shown under the title.",
+     category:    "Mains",                   // e.g. Breakfast, Starters, Soups, Mains, Sides, Baking, Desserts, Drinks
+     cuisine:     "Italian",
+     tags:        ["pasta", "freezable"],
+     servings:    4,                         // number of portions the quantities are written for
+     prepTime:    15,                        // minutes
+     cookTime:    60,                        // minutes
+     difficulty:  "Easy",                    // "Easy" | "Medium" | "Hard"
+     ingredients: [                          // one or more groups; use group "" for a single list
+       { group: "For the sauce", items: [
+           { qty: 500,     unit: "g",    item: "beef mince", note: "15% fat" },
+           { qty: "1 1/2", unit: "tbsp", item: "olive oil",  note: "" },
+           { qty: "2-3",   unit: "",     item: "garlic cloves", note: "crushed" },
+           { qty: "",      unit: "",     item: "salt and pepper", note: "to taste" }
+       ]}
+     ],
+     steps: [                                // in order; timerMinutes adds a one-tap timer
+       { text: "Brown the mince in a hot pan.", timerMinutes: 8 },
+       { text: "Simmer the sauce gently at 180°C in the oven…", timerMinutes: 45 }
+     ],
+     tips:      "Even better the next day.",  // free text, shown as "Tips & notes"
+     photo:     "",                           // data URL ("data:image/jpeg;base64,…") or a path/URL next to this file
+     source:    "Grandma’s notebook",         // text or a URL
+     dateAdded: "2026-11-11",                 // YYYY-MM-DD
+     favourite: false
+   }
+   qty can be a number, a fraction ("1/2", "1 1/2", "½") or a range ("2-3"),
+   and scales automatically with the servings control.
+   ===================================================================== */
+const BUILT_IN_RECIPES = [
+  {
+    id: "high-protein-creamy-garlic-chicken-pasta",
+    title: "High-Protein Creamy Garlic Chicken Pasta",
+    description: "Creamy, garlicky and cheesy without heavy cream, ready in under 20 minutes. One generous serving is about 550–600 calories with 45–50 g protein and plenty of fibre.",
+    category: "Mains",
+    cuisine: "Italian",
+    tags: ["high protein", "weight loss", "quick", "chicken", "pasta", "meal prep"],
+    servings: 1,
+    prepTime: 5,
+    cookTime: 15,
+    difficulty: "Easy",
+    ingredients: [
+      { group: "", items: [
+        { qty: "80-100", unit: "g", item: "whole wheat pasta", note: "dry, or high-protein pasta if available" },
+        { qty: 150, unit: "g", item: "chicken breast", note: "cut into small bite-size pieces" },
+        { qty: 150, unit: "g", item: "Greek yogurt", note: "0% or 2%, plain, high-protein type" },
+        { qty: "2-3", unit: "", item: "garlic cloves", note: "minced (or 1 tsp garlic powder)" },
+        { qty: 1, unit: "", item: "big handful fresh spinach", note: "or broccoli florets" },
+        { qty: 1, unit: "tbsp", item: "Parmesan cheese", note: "grated, plus extra for topping" },
+        { qty: 1, unit: "tsp", item: "olive oil", note: "or cooking spray" },
+        { qty: "1/2", unit: "", item: "lemon", note: "juiced (or a splash of vinegar)" },
+        { qty: "", unit: "", item: "salt, black pepper, Italian herbs / oregano / chilli flakes", note: "to taste" }
+      ]}
+    ],
+    steps: [
+      { text: "Cook the pasta: boil the whole wheat pasta in salted water according to the packet (usually 8–10 min). Save 2–3 tbsp of pasta water before draining.", timerMinutes: 9 },
+      { text: "Cook the chicken: while the pasta cooks, heat 1 tsp olive oil in a non-stick pan on medium heat. Add the chicken pieces and season with salt, pepper and Italian herbs. Cook 4–5 minutes until golden and fully cooked.", timerMinutes: 5 },
+      { text: "Make it creamy: lower the heat. Add the minced garlic to the pan with the chicken and stir for 30 seconds (don't burn it). Turn off the heat. Add the Greek yogurt, lemon juice, Parmesan and a splash of pasta water. Stir until you get a smooth, creamy sauce. It should be silky, so add more pasta water if it's too thick." },
+      { text: "Add greens: throw in the spinach (it wilts instantly). Add the drained pasta to the pan and toss everything together so the sauce coats the pasta and chicken." },
+      { text: "Serve: top with extra black pepper, chilli flakes and a little more Parmesan." }
+    ],
+    tips: "Why it's great for weight loss: high protein (chicken and Greek yogurt) keeps you full and supports muscle; whole wheat pasta and spinach add fibre to control hunger; light Greek yogurt replaces heavy cream for big flavour and fewer calories.\n\nFor extra tastiness: add cherry tomatoes or mushrooms when cooking the chicken, or use smoked paprika or a pinch of cayenne for a kick.\n\nMeal prep: double the recipe and keep it in the fridge for up to 3 days.",
+    photo: "",
+    source: "",
+    dateAdded: "2026-11-11",
+    favourite: false
+  },
+  {
+    id: "steves-spiced-chicken-tomato-carrot-stew",
+    title: "Steve's Spiced Chicken, Tomato & Carrot Stew",
+    description: "Chicken simmered with onions, tomatoes and carrots in ginger, cumin, coriander, cinnamon and saffron, finished with lots of fresh parsley. Serve with bread or couscous.",
+    category: "Mains",
+    cuisine: "Moroccan-style",
+    tags: ["chicken", "stew", "one pot", "from Steve"],
+    servings: 4,
+    prepTime: 15,
+    cookTime: 40,
+    difficulty: "Easy",
+    ingredients: [
+      { group: "", items: [
+        { qty: 2, unit: "", item: "chicken breasts", note: "cubed" },
+        { qty: 2, unit: "", item: "onions", note: "chopped" },
+        { qty: 6, unit: "", item: "tomatoes", note: "chopped" },
+        { qty: 4, unit: "", item: "carrots", note: "sliced or cut into batons" },
+        { qty: 4, unit: "tbsp", item: "olive oil", note: "" },
+        { qty: "1/2", unit: "tsp", item: "ground ginger", note: "" },
+        { qty: "1/2", unit: "tsp", item: "ground cumin", note: "" },
+        { qty: 1, unit: "tsp", item: "ground coriander", note: "" },
+        { qty: "1/4", unit: "tsp", item: "ground cinnamon", note: "" },
+        { qty: "", unit: "", item: "pinch of saffron", note: "" },
+        { qty: 1, unit: "tsp", item: "salt", note: "" },
+        { qty: "", unit: "", item: "black pepper", note: "to taste" },
+        { qty: "", unit: "", item: "fresh parsley", note: "lots, a large handful, chopped" },
+        { qty: "", unit: "", item: "boiling water", note: "enough to just cover the carrots" }
+      ]}
+    ],
+    steps: [
+      { text: "Fry the onions in 4 tbsp olive oil until translucent.", timerMinutes: 6 },
+      { text: "Add the chicken and fry until coloured." },
+      { text: "Add the spices (ginger, cumin, coriander, cinnamon, saffron), 1 tsp salt and black pepper, and stir." },
+      { text: "Add the tomatoes and stir." },
+      { text: "Add the carrots, then top up with boiling water until the carrots are just covered." },
+      { text: "Simmer for about 30 minutes. You want some of the water to evaporate, but don't let it dry out completely.", timerMinutes: 30 },
+      { text: "Add a large handful of chopped parsley and stir. Serve with bread or couscous." }
+    ],
+    tips: "Serve with bread or couscous.",
+    photo: "",
+    source: "Steve",
+    dateAdded: "2026-11-11",
+    favourite: false
+  }
+];
+</script>
+<script>
+'use strict';
+(function(){
+/* ============================ Utilities ============================ */
+const $ = (s, el=document) => el.querySelector(s);
+const $$ = (s, el=document) => Array.from(el.querySelectorAll(s));
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+const clone = o => JSON.parse(JSON.stringify(o));
+const icon = (n, cls='') => `<svg class="icon ${cls}" aria-hidden="true"><use href="#i-${n}"/></svg>`;
+const slug = s => String(s||'').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,48);
+const todayISO = () => isoDate(new Date());
+function isoDate(d){ return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
+function parseISO(s){ const [y,m,d] = String(s).split('-').map(Number); return new Date(y, (m||1)-1, d||1); }
+const fmtDate = (s, opts={day:'numeric',month:'short',year:'numeric'}) => { if(!s) return ''; const d = /^\d{4}-\d{2}-\d{2}$/.test(s) ? parseISO(s) : new Date(s); return isNaN(d) ? '' : d.toLocaleDateString('en-GB', opts); };
+function fmtTime(min){ min = Math.round(+min||0); if(!min) return ''; const h = Math.floor(min/60), m = min%60; return h ? (m ? `${h} hr ${m} min` : `${h} hr`) : `${m} min`; }
+function hash(s){ let h = 0; for(const c of String(s)) h = (h*31 + c.charCodeAt(0)) | 0; return Math.abs(h); }
+function debounce(fn, ms){ let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; }
+
+/* ============================== State ============================== */
+const STORE_KEY = 'adamsCookbook.v1';
+const DEFAULT_STATE = { version:1, recipes:[], deleted:[], meta:{}, shopping:[], planner:{}, recent:[], prefs:{ theme:'system', units:'metric', name:'Adam’s Cookbook' } };
+let state = load();
+function load(){
+  try{
+    const s = JSON.parse(localStorage.getItem(STORE_KEY) || 'null');
+    if(s && typeof s === 'object') return Object.assign(clone(DEFAULT_STATE), s, { prefs: Object.assign({}, DEFAULT_STATE.prefs, s.prefs||{}) });
+  }catch(e){ console.warn('Could not read saved data', e); }
+  return clone(DEFAULT_STATE);
+}
+function save(){
+  try{ localStorage.setItem(STORE_KEY, JSON.stringify(state)); return true; }
+  catch(e){ toast('Couldn’t save – this device’s storage is full. Try a smaller photo, or export a backup.', {error:true, timeout:7000}); return false; }
+}
+const meta = id => (state.meta[id] ||= {});
+
+/* ============================== Recipes ============================ */
+function normRecipe(r){
+  r = r || {};
+  const tags = Array.isArray(r.tags) ? r.tags : (r.tags ? String(r.tags).split(',') : []);
+  let ingredients = Array.isArray(r.ingredients) ? r.ingredients : [];
+  if(ingredients.length && !ingredients.some(g => g && Array.isArray(g.items))) ingredients = [{ group:'', items: ingredients }];
+  ingredients = ingredients.filter(g => g && Array.isArray(g.items)).map(g => ({
+    group: g.group || '',
+    items: g.items.map(it => typeof it === 'string' ? parseIngredientLine(it) : { qty: it.qty ?? '', unit: it.unit || '', item: it.item || '', note: it.note || '' }).filter(it => it.item || it.qty)
+  }));
+  const steps = (Array.isArray(r.steps) ? r.steps : []).map(s => typeof s === 'string' ? { text:s } : { text: s.text || '', timerMinutes: +s.timerMinutes || undefined }).filter(s => s.text);
+  return {
+    id: String(r.id || uid()), title: String(r.title || 'Untitled recipe'), description: r.description || '',
+    category: r.category || '', cuisine: r.cuisine || '', tags: tags.map(t => String(t).trim()).filter(Boolean),
+    servings: +r.servings || 0, prepTime: +r.prepTime || 0, cookTime: +r.cookTime || 0, difficulty: r.difficulty || '',
+    ingredients, steps, tips: r.tips || r.notes || '', photo: r.photo || '', source: r.source || '',
+    dateAdded: r.dateAdded || '', favourite: !!r.favourite
+  };
+}
+let _cache = null;
+function invalidate(){ _cache = null; }
+function allRecipes(){
+  if(_cache) return _cache;
+  const map = new Map();
+  for(const r of (typeof BUILT_IN_RECIPES !== 'undefined' ? BUILT_IN_RECIPES : [])){
+    if(!r || state.deleted.includes(String(r.id))) continue;
+    const n = normRecipe(r); n._builtIn = true; map.set(n.id, n);
+  }
+  for(const r of state.recipes){
+    const n = normRecipe(r); n._builtIn = map.has(n.id) || !!r._builtIn; map.set(n.id, n);
+  }
+  for(const r of map.values()){
+    const m = state.meta[r.id] || {};
+    if(typeof m.fav === 'boolean') r.favourite = m.fav;
+    r._cooked = m.cooked || 0; r._lastCooked = m.lastCooked || ''; r._notes = m.notes || '';
+    r._total = (r.prepTime||0) + (r.cookTime||0);
+  }
+  return (_cache = [...map.values()]);
+}
+const getRecipe = id => allRecipes().find(r => r.id === id);
+function saveRecipe(r){
+  const clean = normRecipe(r);
+  const i = state.recipes.findIndex(x => String(x.id) === clean.id);
+  if(i >= 0) state.recipes[i] = clean; else state.recipes.push(clean);
+  state.deleted = state.deleted.filter(d => d !== clean.id);
+  invalidate(); return save();
+}
+function deleteRecipe(id){
+  state.recipes = state.recipes.filter(r => String(r.id) !== id);
+  if((typeof BUILT_IN_RECIPES !== 'undefined' ? BUILT_IN_RECIPES : []).some(r => String(r.id) === id)) state.deleted.push(id);
+  delete state.meta[id];
+  state.recent = state.recent.filter(x => x !== id);
+  invalidate(); save();
+}
+function setFav(id, on){ meta(id).fav = on; invalidate(); save(); }
+
+/* ======================= Quantities & units ======================== */
+const FRAC = {'½':1/2,'⅓':1/3,'⅔':2/3,'¼':1/4,'¾':3/4,'⅕':1/5,'⅖':2/5,'⅗':3/5,'⅘':4/5,'⅙':1/6,'⅚':5/6,'⅛':1/8,'⅜':3/8,'⅝':5/8,'⅞':7/8};
+const FRAC_CHARS = Object.keys(FRAC).join('');
+function parseNum(s){
+  s = String(s).trim().replace(new RegExp(`(\\d)\\s*([${FRAC_CHARS}])`,'g'), '$1 $2');
+  if(!s) return null;
+  let total = 0, any = false;
+  for(const p of s.split(/\s+/)){
+    if(FRAC[p] != null){ total += FRAC[p]; any = true; continue; }
+    let m = p.match(/^(\d+)\/(\d+)$/); if(m && +m[2]){ total += +m[1] / +m[2]; any = true; continue; }
+    if(/^\d+(?:[.,]\d+)?$/.test(p)){ total += parseFloat(p.replace(',', '.')); any = true; continue; }
+    return null;
+  }
+  return any ? total : null;
+}
+function parseQty(q){
+  if(q == null || q === '') return null;
+  if(typeof q === 'number') return isFinite(q) ? { min:q, max:q } : null;
+  const s = String(q).trim();
+  const parts = s.split(/\s*(?:-|–|—|\bto\b)\s*/);
+  if(parts.length === 2){ const a = parseNum(parts[0]), b = parseNum(parts[1]); if(a != null && b != null) return { min:a, max:b }; }
+  const n = parseNum(s); return n == null ? null : { min:n, max:n };
+}
+const UNIT_ALIASES = {
+  g:['g','gr','gram','grams','gramme','grammes','grm'], kg:['kg','kgs','kilo','kilos','kilogram','kilograms'], mg:['mg'],
+  ml:['ml','mls','millilitre','millilitres','milliliter','milliliters'], cl:['cl','centilitre','centilitres'], dl:['dl','decilitre','decilitres'],
+  l:['l','litre','litres','liter','liters','ltr'], tsp:['tsp','tsps','teaspoon','teaspoons','tsp.','tl'], tbsp:['tbsp','tbsps','tablespoon','tablespoons','tbs','tbl','tbsp.','el'],
+  cup:['cup','cups'], 'fl oz':['fl oz','fl. oz','fl.oz','floz','fluid ounce','fluid ounces'], oz:['oz','ounce','ounces'], lb:['lb','lbs','pound','pounds'],
+  pint:['pint','pints','pt'], quart:['quart','quarts','qt'], cm:['cm'], mm:['mm'], inch:['inch','inches','"'],
+  pinch:['pinch','pinches'], dash:['dash','dashes'], handful:['handful','handfuls'], clove:['clove','cloves'], can:['can','cans','tin','tins'],
+  pack:['pack','packs','packet','packets'], bunch:['bunch','bunches'], sprig:['sprig','sprigs'], slice:['slice','slices'], piece:['piece','pieces'],
+  stick:['stick','sticks'], knob:['knob','knobs'], sheet:['sheet','sheets'], jar:['jar','jars'], bottle:['bottle','bottles'], bag:['bag','bags'], drop:['drop','drops'], splash:['splash','splashes'], sachet:['sachet','sachets'], stalk:['stalk','stalks'], leaf:['leaf','leaves'], head:['head','heads']
+};
+const ALIAS_TO_UNIT = {}; for(const [u, list] of Object.entries(UNIT_ALIASES)) for(const a of list) ALIAS_TO_UNIT[a] = u;
+const ALIASES_SORTED = Object.keys(ALIAS_TO_UNIT).sort((a,b) => b.length - a.length);
+const canonUnit = u => { if(!u) return ''; const k = String(u).trim().toLowerCase(); return ALIAS_TO_UNIT[k] || ALIAS_TO_UNIT[k.replace(/\.$/,'')] || k; };
+const PLURAL = { cup:'cups', clove:'cloves', can:'tins', pinch:'pinches', handful:'handfuls', pack:'packs', bunch:'bunches', sprig:'sprigs', slice:'slices', piece:'pieces', stick:'sticks', knob:'knobs', sheet:'sheets', jar:'jars', bottle:'bottles', bag:'bags', drop:'drops', pint:'pints', quart:'quarts', dash:'dashes', sachet:'sachets', stalk:'stalks', leaf:'leaves', head:'heads', splash:'splashes', inch:'inches' };
+const SINGULAR_LABEL = { can:'tin' };
+function unitLabel(u, qty){ const c = canonUnit(u); if(PLURAL[c]) return (qty != null && qty > 1) ? PLURAL[c] : (SINGULAR_LABEL[c] || c); return c === 'inch' ? 'in' : c; }
+
+/* Convert to metric or imperial. Returns {qty, unit} (unit is the display unit). */
+function convert(qty, unit, system){
+  const c = canonUnit(unit);
+  if(qty == null) return { qty, unit };
+  if(system === 'imperial'){
+    if(c === 'g' || c === 'kg' || c === 'mg'){ const g = c === 'kg' ? qty*1000 : c === 'mg' ? qty/1000 : qty; const oz = g/28.3495; return oz >= 16 ? { qty: oz/16, unit:'lb' } : { qty: oz, unit:'oz' }; }
+    if(['ml','cl','dl','l'].includes(c)){ const ml = qty * ({ml:1,cl:10,dl:100,l:1000})[c]; const floz = ml/28.413; return floz >= 20 ? { qty: floz/20, unit:'pint' } : { qty: floz, unit:'fl oz' }; }
+    if(c === 'cm' || c === 'mm'){ return { qty: (c === 'mm' ? qty/10 : qty)/2.54, unit:'inch' }; }
+  } else {
+    if(c === 'oz'){ const g = qty*28.3495; return g >= 1000 ? { qty:g/1000, unit:'kg' } : { qty:g, unit:'g' }; }
+    if(c === 'lb'){ const g = qty*453.592; return g >= 1000 ? { qty:g/1000, unit:'kg' } : { qty:g, unit:'g' }; }
+    if(c === 'fl oz' || c === 'cup' || c === 'pint' || c === 'quart'){ const ml = qty * ({'fl oz':28.413, cup:240, pint:568.26, quart:946.35})[c]; return ml >= 1000 ? { qty:ml/1000, unit:'l' } : { qty:ml, unit:'ml' }; }
+    if(c === 'inch'){ return { qty: qty*2.54, unit:'cm' }; }
+  }
+  return { qty, unit };
+}
+const NICE_FRACS = [[0,''],[1/8,'⅛'],[1/4,'¼'],[1/3,'⅓'],[3/8,'⅜'],[1/2,'½'],[5/8,'⅝'],[2/3,'⅔'],[3/4,'¾'],[7/8,'⅞'],[1,'']];
+function fmtNum(n, unit){
+  if(n == null || !isFinite(n)) return '';
+  const c = canonUnit(unit);
+  if(['g','ml','mg'].includes(c)){ if(n >= 100) return String(Math.round(n/5)*5); if(n >= 10) return String(Math.round(n)); return String(Math.round(n*10)/10); }
+  if(['kg','l'].includes(c)) return String(Math.round(n*100)/100);
+  if(['oz','fl oz','cm'].includes(c) && n >= 10) return String(Math.round(n));
+  if(n >= 20) return String(Math.round(n));
+  let whole = Math.floor(n), frac = n - whole, best = NICE_FRACS[0], diff = 1;
+  for(const f of NICE_FRACS){ const d = Math.abs(frac - f[0]); if(d < diff){ diff = d; best = f; } }
+  if(diff > 0.04 && n < 10) return String(Math.round(n*10)/10);
+  if(best[0] === 1){ whole += 1; best = NICE_FRACS[0]; }
+  if(!whole && !best[1]) return n > 0 ? String(Math.round(n*100)/100) : '0';
+  return (whole ? String(whole) : '') + best[1];
+}
+/* Render an ingredient's quantity scaled by factor and converted to system */
+function displayQty(it, factor, system){
+  const pq = parseQty(it.qty);
+  if(!pq) return { text: it.qty ? String(it.qty) : '', unit: it.unit || '', unitText: it.unit || '' };
+  let a = convert(pq.min*factor, it.unit, system), b = convert(pq.max*factor, it.unit, system);
+  const unit = a.unit;
+  const unitChanged = canonUnit(unit) !== canonUnit(it.unit);
+  const shownUnit = unitChanged || PLURAL[canonUnit(it.unit)] ? unitLabel(unit, b.qty) : it.unit;
+  let text = fmtNum(a.qty, unit);
+  if(pq.max !== pq.min){ const bt = fmtNum(b.qty, b.unit); if(bt !== text) text += '–' + bt; }
+  return { text, unit, unitText: shownUnit || '' };
+}
+function ingredientText(it, factor=1, system=state.prefs.units){
+  const q = displayQty(it, factor, system);
+  const unitTxt = q.unitText ? (/^[a-z]{1,3}$/i.test(q.unitText) && q.text && /\d$/.test(q.text) && ['g','kg','ml','l','cl','dl','mg','oz','lb','cm','mm'].includes(canonUnit(q.unitText)) ? q.unitText : ' ' + q.unitText) : '';
+  const qty = (q.text + unitTxt).trim();
+  return { qty, item: it.item || '', note: it.note || '' };
+}
+/* Oven temperatures in text: show the other scale alongside */
+function tempify(html, system){
+  return html.replace(/(\d{2,3})\s*(?:°|º|degrees\s*)\s*(C|F)\b|(\d{2,3})(C|F)\b/g, (m, n1, u1, n2, u2) => {
+    const n = +(n1 || n2), u = (u1 || u2).toUpperCase();
+    if(u === 'C' && system === 'imperial') return `${n}°C <span class="note">(${Math.round((n*9/5+32)/25)*25}°F)</span>`;
+    if(u === 'F' && system === 'metric') return `${n}°F <span class="note">(${Math.round(((n-32)*5/9)/10)*10}°C)</span>`;
+    return `${n}°${u}`;
+  });
+}
+function detectTimer(text){
+  const m = String(text).match(/(\d+(?:[.,]\d+)?)(?:\s*(?:-|–|to)\s*\d+(?:[.,]\d+)?)?\s*(hours?|hrs?|h\b|minutes?|mins?\b)/i);
+  if(!m) return undefined;
+  const n = parseFloat(m[1].replace(',', '.')); return /^h/i.test(m[2]) ? Math.round(n*60) : Math.round(n);
+}
+
+/* ======================= Plain-text recipe parser ===================== */
+function parseIngredientLine(line){
+  let s = String(line).trim().replace(/^[-*•·–▪◦]\s*/, '').replace(/^\[\s?[x ]?\s?\]\s*/i, '');
+  const out = { qty:'', unit:'', item:'', note:'' };
+  const qre = new RegExp(`^((?:\\d+\\s+\\d+\\/\\d+)|(?:\\d+\\/\\d+)|(?:\\d+(?:[.,]\\d+)?\\s*[${FRAC_CHARS}]?)|[${FRAC_CHARS}])(\\s*(?:-|–|to)\\s*(?:\\d+\\/\\d+|\\d+(?:[.,]\\d+)?))?`);
+  const m = s.match(qre);
+  if(m){
+    const raw = (m[1] + (m[2] || '')).trim();
+    const pq = parseQty(raw);
+    out.qty = pq && pq.min === pq.max && /^\d+(?:\.\d+)?$/.test(raw) ? +raw : raw.replace(/\s*(?:-|–|to)\s*/, '-');
+    s = s.slice(m[0].length);
+    const rest = s.replace(/^\s*[x×]\s+/i, ' ');
+    const pk = rest.match(/^\s*(\d+(?:[.,]\d+)?\s*(?:g|kg|ml|l|cl|oz))\s+(tins?|cans?|packs?|packets?|jars?|bags?|bottles?|cartons?|pots?|tubs?)\b\s*(?:of\s+)?(.*)$/i);
+    if(pk){ out.unit = pk[2]; let it = pk[3].trim(), extra = ''; const c = it.indexOf(','); if(c > 0){ extra = it.slice(c+1).trim(); it = it.slice(0, c); } out.item = it; out.note = [pk[1].replace(/\s+/g, ''), extra].filter(Boolean).join(', '); return out; }
+    const low = rest.trimStart().toLowerCase();
+    for(const a of ALIASES_SORTED){
+      if(low.startsWith(a) && (low.length === a.length || /[\s.,)]/.test(low[a.length]))){
+        out.unit = a === '"' ? 'inch' : rest.trimStart().slice(0, a.length).replace(/\.$/, '');
+        s = rest.trimStart().slice(a.length).replace(/^\.\s*/, ' ');
+        break;
+      }
+    }
+    if(!out.unit) s = rest;
+  }
+  s = s.trim().replace(/^of\s+/i, '');
+  let note = '';
+  const lead = s.match(/^\(([^)]+)\)\s*/);
+  if(lead){ note = lead[1]; s = s.slice(lead[0].length); }
+  const paren = s.match(/\s*\(([^)]+)\)\s*$/);
+  if(paren){ note = [note, paren[1]].filter(Boolean).join(', '); s = s.slice(0, paren.index); }
+  const comma = s.indexOf(',');
+  if(comma > 0){ note = [s.slice(comma+1).trim(), note].filter(Boolean).join(', '); s = s.slice(0, comma); }
+  out.item = s.trim(); out.note = note.trim();
+  return out;
+}
+function parseDuration(s){
+  s = String(s).trim().toLowerCase();
+  const m = s.match(/^(?:(\d+(?:[.,]\d+)?)\s*(?:h|hr|hrs|hour|hours))?\s*(?:and\s*)?(?:(\d+)\s*(?:m|min|mins|minute|minutes))?\.?$/);
+  if(!m || (!m[1] && !m[2])) return null;
+  return Math.round(parseFloat((m[1]||'0').replace(',','.'))*60 + (+m[2]||0));
+}
+function parseRecipeText(text){
+  const lines = String(text).replace(/\r/g, '').split('\n');
+  const r = { title:'', description:'', ingredients:[{ group:'', items:[] }], steps:[], tips:'' };
+  const desc = [], tips = [];
+  let section = 'head', numbered = false, found = false;
+  for(const raw0 of lines){
+    const raw = raw0.trim(); if(!raw) continue;
+    const l = raw.replace(/^#+\s*/, '').replace(/^\*\*(.+)\*\*$/, '$1').replace(/^__(.+)__$/, '$1').trim();
+    const h = l.replace(/[:：]\s*$/, '').trim().toLowerCase();
+    if(/^(ingredients?|ingrediënten|what you('ll)? need|you will need|shopping list)$/.test(h)){ section = 'ing'; found = true; continue; }
+    if(/^(method|steps|directions|instructions|preparation|how to make( it)?|bereiding|to make)$/.test(h)){ section = 'steps'; found = true; continue; }
+    if(/^(notes?|tips?|tips (and|&) notes|cook'?s notes?|to serve|serving suggestions?)$/.test(h)){ section = 'tips'; continue; }
+    let m;
+    if((m = l.match(/^(?:serves|servings|yield|makes|portions)\s*:?\s*(\d+)/i))){ r.servings = +m[1]; continue; }
+    if((m = l.match(/^(?:prep(?:aration)?(?:\s*time)?)\s*:?\s*(.+)$/i)) && parseDuration(m[1]) != null){ r.prepTime = parseDuration(m[1]); continue; }
+    if((m = l.match(/^(?:cook(?:ing)?|bake|baking)(?:\s*time)?\s*:?\s*(.+)$/i)) && parseDuration(m[1]) != null){ r.cookTime = parseDuration(m[1]); continue; }
+    if((m = l.match(/^total(?:\s*time)?\s*:?\s*(.+)$/i)) && parseDuration(m[1]) != null){ if(!r.cookTime) r.cookTime = parseDuration(m[1]); continue; }
+    if(section === 'head'){
+      if(!r.title) r.title = l.replace(/^title\s*:\s*/i, ''); else desc.push(l);
+    } else if(section === 'ing'){
+      if(/[:：]$/.test(l) && !/\d/.test(l) && !/^[-*•]/.test(raw)){
+        const name = l.replace(/[:：]$/, '').trim(); const cur = r.ingredients[r.ingredients.length-1];
+        if(!cur.items.length) cur.group = name; else r.ingredients.push({ group:name, items:[] });
+        continue;
+      }
+      r.ingredients[r.ingredients.length-1].items.push(parseIngredientLine(l));
+    } else if(section === 'steps'){
+      const nm = l.match(/^(?:step\s*)?\d+\s*[.):]\s*|^step\s*\d+\s*[-–:]?\s*/i);
+      let t = nm ? l.slice(nm[0].length) : l.replace(/^[-*•]\s*/, '');
+      if(nm) numbered = true;
+      if(!nm && numbered && r.steps.length){ r.steps[r.steps.length-1].text += ' ' + t; r.steps[r.steps.length-1].timerMinutes = detectTimer(r.steps[r.steps.length-1].text); continue; }
+      if(t) r.steps.push({ text:t, timerMinutes: detectTimer(t) });
+    } else tips.push(l.replace(/^[-*•]\s*/, ''));
+  }
+  r.description = desc.join(' ');
+  r.tips = tips.join('\n');
+  r.ingredients = r.ingredients.filter((g, i) => g.items.length || i === 0);
+  r._found = found;
+  return r;
+}
+
+/* ============================== Theme ============================== */
+const mql = matchMedia('(prefers-color-scheme: dark)');
+const effectiveTheme = () => state.prefs.theme === 'system' ? (mql.matches ? 'dark' : 'light') : state.prefs.theme;
+function applyTheme(){
+  const root = document.documentElement;
+  if(state.prefs.theme === 'system') root.removeAttribute('data-theme'); else root.setAttribute('data-theme', state.prefs.theme);
+  const dark = effectiveTheme() === 'dark';
+  $('#themeColor').setAttribute('content', dark ? '#16120F' : '#FBF7F2');
+  $$('[data-theme-icon]').forEach(u => u.setAttribute('href', dark ? '#i-sun' : '#i-moon'));
+  $$('[data-action="toggle-theme"]').forEach(b => b.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode'));
+}
+mql.addEventListener?.('change', applyTheme);
+
+/* ============================ App icon ============================= */
+const ICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C8643A"/><stop offset="1" stop-color="#9C4220"/></linearGradient></defs><rect width="64" height="64" rx="15" fill="url(#g)"/><path d="M14 31h36a18 18 0 0 1-36 0z" fill="#FBF7F2"/><path d="M11 31h42" stroke="#FBF7F2" stroke-width="3.2" stroke-linecap="round"/><path d="M24 50h16" stroke="#FBF7F2" stroke-width="3.2" stroke-linecap="round"/><g stroke="#FBF7F2" stroke-width="2.6" fill="none" stroke-linecap="round"><path d="M25 12c-2.5 3 2.5 5 0 9"/><path d="M32 9c-2.5 3 2.5 5 0 9"/><path d="M39 12c-2.5 3 2.5 5 0 9"/></g></svg>`;
+const ICON_URL = 'data:image/svg+xml,' + encodeURIComponent(ICON_SVG);
+function setupIcons(){
+  $('#favicon').href = ICON_URL;
+  $$('[data-icon]').forEach(i => i.src = ICON_URL);
+  try{
+    const img = new Image();
+    img.onload = () => {
+      try{
+        const c = document.createElement('canvas'); c.width = c.height = 180;
+        const x = c.getContext('2d'); x.drawImage(img, 0, 0, 180, 180);
+        const png = c.toDataURL('image/png');
+        $('#appleIcon').href = png;
+        const manifest = { name: state.prefs.name, short_name:'Cookbook', display:'standalone', start_url:'.', background_color:'#FBF7F2', theme_color:'#B0502A', icons:[{ src: png, sizes:'180x180', type:'image/png' }, { src: ICON_URL, sizes:'any', type:'image/svg+xml' }] };
+        if(location.protocol.startsWith('http')){
+          const link = document.createElement('link'); link.rel = 'manifest';
+          link.href = 'data:application/manifest+json,' + encodeURIComponent(JSON.stringify(manifest));
+          document.head.appendChild(link);
+        }
+      }catch(e){}
+    };
+    img.src = ICON_URL;
+  }catch(e){}
+}
+/* ========================= Toasts & modals ========================= */
+function toast(msg, { action, error, timeout = 3800 } = {}){
+  const el = document.createElement('div');
+  el.className = 'toast' + (error ? ' error' : '');
+  el.innerHTML = `<span>${esc(msg)}</span>` + (action ? `<button type="button">${esc(action.label)}</button>` : '');
+  const close = () => { el.classList.add('out'); setTimeout(() => el.remove(), 250); };
+  if(action) el.querySelector('button').onclick = () => { action.fn(); close(); };
+  $('#toasts').appendChild(el);
+  const all = $$('#toasts .toast:not(.out)'); if(all.length > 2) all.slice(0, all.length - 2).forEach(t => t.remove());
+  setTimeout(close, action ? Math.max(timeout, 6000) : timeout);
+}
+let modalStack = [];
+function openModal({ title, body, footer = '', onOpen, onClose, label }){
+  const prevFocus = document.activeElement;
+  const back = document.createElement('div');
+  back.className = 'modal-backdrop';
+  back.innerHTML = `<div class="modal" role="dialog" aria-modal="true" aria-labelledby="mt-${modalStack.length}">
+    <header><h2 id="mt-${modalStack.length}">${esc(title)}</h2><button class="icon-btn sm" data-close aria-label="Close">${icon('x')}</button></header>
+    <div class="mbody">${body}</div>${footer ? `<footer>${footer}</footer>` : ''}</div>`;
+  $('#modalRoot').appendChild(back);
+  const modal = back.firstElementChild;
+  const close = (result) => {
+    if(!back.isConnected) return;
+    back.remove(); modalStack = modalStack.filter(m => m !== api);
+    onClose && onClose(result);
+    if(prevFocus && prevFocus.focus) prevFocus.focus({ preventScroll:true });
+  };
+  const api = { el: modal, close };
+  modalStack.push(api);
+  back.addEventListener('mousedown', e => { if(e.target === back) close(); });
+  modal.addEventListener('click', e => { if(e.target.closest('[data-close]')) close(); });
+  modal.addEventListener('keydown', e => {
+    if(e.key !== 'Tab') return;
+    const f = $$('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])', modal).filter(x => !x.disabled && x.offsetParent !== null);
+    if(!f.length) return;
+    if(e.shiftKey && document.activeElement === f[0]){ e.preventDefault(); f[f.length-1].focus(); }
+    else if(!e.shiftKey && document.activeElement === f[f.length-1]){ e.preventDefault(); f[0].focus(); }
+  });
+  onOpen && onOpen(modal, close);
+  const first = modal.querySelector('[autofocus]') || modal.querySelector('.mbody input, .mbody select, .mbody textarea, footer .primary, footer button');
+  (first || modal.querySelector('[data-close]')).focus();
+  return api;
+}
+function confirmDialog({ title, message, confirmText = 'Confirm', danger = false }){
+  return new Promise(res => {
+    let answered = false;
+    openModal({ title, body:`<p>${esc(message)}</p>`,
+      footer:`<button class="btn" data-close>Cancel</button><button class="btn ${danger ? 'danger solid' : 'primary'}" data-ok>${esc(confirmText)}</button>`,
+      onOpen:(m, close) => { m.querySelector('[data-ok]').onclick = () => { answered = true; close(); res(true); }; },
+      onClose:() => { if(!answered) res(false); } });
+  });
+}
+function download(name, text, type = 'application/json'){
+  const blob = new Blob([text], { type });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name;
+  document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+}
+async function copyText(text){
+  try{ await navigator.clipboard.writeText(text); return true; }
+  catch(e){
+    const ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select(); let ok = false; try{ ok = document.execCommand('copy'); }catch(_){} ta.remove(); return ok;
+  }
+}
+async function shareText(title, text){
+  if(navigator.share){ try{ await navigator.share({ title, text }); return; }catch(e){ if(e.name === 'AbortError') return; } }
+  toast(await copyText(text) ? 'Copied to clipboard' : 'Couldn’t copy – please try again', {});
+}
+
+/* ============================ Media ============================== */
+let patternSeq = 0;
+const PATTERN_PATHS = '<g stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"><path d="M14 22c4-6 10-6 14 0M70 14l8 8M78 14l-8 8M20 70c6 0 6 8 12 8s6-8 12-8M86 82l10-10M34 104l6-6 6 6M92 108c3-5 9-5 12 0"/><circle cx="100" cy="40" r="6"/><circle cx="60" cy="52" r="3"/></g>';
+function mediaHTML(r, big = false){
+  if(r.photo) return `<img src="${esc(r.photo)}" alt="" loading="lazy" decoding="async">`;
+  const h = [18, 28, 36, 8, 48, 95, 150, 345][hash(r.title) % 8];
+  const initial = (r.title.trim()[0] || '·').toUpperCase();
+  const pid = 'p' + (++patternSeq);
+  return `<div class="ph ${big ? 'big' : ''}" style="--h:${h}" aria-hidden="true"><svg class="pattern"><defs><pattern id="${pid}" width="120" height="120" patternUnits="userSpaceOnUse" patternTransform="rotate(${hash(r.title)%40-20})">${PATTERN_PATHS}</pattern></defs><rect width="100%" height="100%" fill="url(#${pid})"/></svg><span class="initial">${esc(initial)}</span></div>`;
+}
+
+/* ============================= Router ============================ */
+const ui = { q:'', cat:'all', tag:'', sort:'az', servings:{}, ticks:{}, stepsDone:{}, weekOffset:0, units:null };
+let currentView = '';
+function route(){
+  const hash = decodeURIComponent(location.hash.replace(/^#\/?/, ''));
+  const [path, query] = hash.split('?');
+  const parts = path.split('/').filter(Boolean);
+  const main = $('#main');
+  let view = parts[0] || 'library';
+  if(view === 'recipe' && parts[1]) renderRecipe(parts.slice(1).join('/'));
+  else if(view === 'edit' && parts[1]) renderForm(parts.slice(1).join('/'));
+  else if(view === 'new') renderForm(null, query === 'paste');
+  else if(view === 'shopping') renderShopping();
+  else if(view === 'planner') renderPlanner();
+  else if(view === 'more') renderMore();
+  else { view = 'library'; renderLibrary(); }
+  const nav = { recipe:'library', edit:'library', new:'' }[view] ?? view;
+  $$('[data-nav]').forEach(a => { if(a.dataset.nav === nav) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); });
+  if(currentView !== hash){ window.scrollTo({ top:0, behavior:'instant' in window ? 'instant' : 'auto' }); }
+  currentView = hash;
+  updateChrome();
+}
+function go(h){ if(location.hash === h) route(); else location.hash = h; }
+function updateChrome(){
+  const count = state.shopping.filter(i => !i.checked).length;
+  $$('[data-shopcount]').forEach(b => { b.hidden = !count; b.textContent = count > 99 ? '99+' : count; });
+  const hasRecipes = allRecipes().length > 0;
+  $$('[data-random-btn]').forEach(b => b.hidden = !hasRecipes);
+  $$('[data-name]').forEach(n => n.textContent = state.prefs.name);
+  document.title = state.prefs.name;
+}
+
+/* ============================ Library ============================ */
+function greeting(){ const h = new Date().getHours(); return h < 5 ? 'Good evening' : h < 12 ? 'Good morning' : h < 18 ? 'Good afternoon' : 'Good evening'; }
+const EMPTY_ILLUS = `<svg class="illus" viewBox="0 0 260 190" fill="none" aria-hidden="true">
+  <ellipse cx="130" cy="172" rx="104" ry="10" fill="var(--surface-3)"/>
+  <path d="M38 52c30-10 62-8 92 8v104c-30-15-62-17-92-8z" fill="var(--surface)" stroke="var(--border-strong)" stroke-width="2"/>
+  <path d="M222 52c-30-10-62-8-92 8v104c30-15 62-17 92-8z" fill="var(--surface)" stroke="var(--border-strong)" stroke-width="2"/>
+  <g stroke="var(--border-strong)" stroke-width="2" stroke-linecap="round"><path d="M52 74c18-4 40-3 64 5M52 90c18-4 40-3 64 5M52 106c18-4 32-3 48 2"/><path d="M144 79c24-8 46-9 64-5"/></g>
+  <circle cx="176" cy="114" r="16" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/><path d="M176 106v16M168 114h16" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"/>
+  <g stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round" fill="none"><path d="M112 30c-4 5 4 8 0 14"/><path d="M130 22c-4 5 4 8 0 14"/><path d="M148 30c-4 5 4 8 0 14"/></g>
+  <path d="M200 30l3 8 8 3-8 3-3 8-3-8-8-3 8-3z" fill="var(--accent)" opacity=".7"/><path d="M50 26l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="var(--accent)" opacity=".5"/>
+</svg>`;
+function renderLibrary(){
+  const recipes = allRecipes();
+  const main = $('#main');
+  if(!recipes.length){
+    main.innerHTML = `<div class="view">
+      <div class="empty">
+        ${EMPTY_ILLUS}
+        <div class="eyebrow">${esc(greeting())}, Adam</div>
+        <h2>Your cookbook is ready</h2>
+        <p>Add your first recipe – only your own recipes live here. Type it in, paste it straight from your notes, or restore a backup.</p>
+        <div class="actions">
+          <a class="btn primary" href="#/new">${icon('plus')}Add your first recipe</a>
+          <a class="btn" href="#/new?paste">${icon('clipboard')}Paste a recipe</a>
+          <button class="btn ghost" data-action="import">${icon('upload')}Restore a backup</button>
+        </div>
+        <div class="feature-list">
+          <div class="feature"><div class="ic">${icon('users')}</div><div><b>Scale any recipe</b><span>Change servings and every quantity adjusts. Metric or imperial.</span></div></div>
+          <div class="feature"><div class="ic">${icon('flame')}</div><div><b>Cook mode</b><span>Big, step-by-step view with timers that keeps your screen awake.</span></div></div>
+          <div class="feature"><div class="ic">${icon('calendar')}</div><div><b>Plan &amp; shop</b><span>Plan the week, then send everything to one tidy shopping list.</span></div></div>
+        </div>
+      </div></div>`;
+    return;
+  }
+  const favCount = recipes.filter(r => r.favourite).length;
+  const cats = [...new Set(recipes.map(r => r.category).filter(Boolean))].sort((a,b) => a.localeCompare(b));
+  const tags = [...new Set(recipes.flatMap(r => r.tags))].sort((a,b) => a.localeCompare(b));
+  if(ui.tag && !tags.includes(ui.tag)) ui.tag = '';
+  if(ui.cat !== 'all' && ui.cat !== 'fav' && !cats.includes(ui.cat)) ui.cat = 'all';
+  const recent = state.recent.map(getRecipe).filter(Boolean).slice(0, 8);
+  main.innerHTML = `<div class="view">
+    <div class="page-head">
+      <div><div class="eyebrow">${esc(greeting())}, Adam</div><h1>${esc(state.prefs.name)}</h1>
+      <p class="sub">${recipes.length} recipe${recipes.length === 1 ? '' : 's'}${favCount ? ` · ${favCount} favourite${favCount === 1 ? '' : 's'}` : ''}</p></div>
+      <button class="btn" data-action="random">${icon('shuffle')}What should I cook?</button>
+    </div>
+    <div class="toolbar">
+      <div class="search">${icon('search')}
+        <label for="q" class="sr-only">Search recipes</label>
+        <input id="q" class="input" type="search" placeholder="Search recipes, ingredients or tags…" value="${esc(ui.q)}" autocomplete="off" enterkeyhint="search">
+        <kbd class="kbd-hint" aria-hidden="true">/</kbd>
+      </div>
+      <div class="filters" role="group" aria-label="Filter by category">
+        <button class="chip" data-cat="all" aria-pressed="${ui.cat === 'all'}">All</button>
+        <button class="chip" data-cat="fav" aria-pressed="${ui.cat === 'fav'}">${icon('heart','sm')}Favourites</button>
+        ${cats.map(c => `<button class="chip" data-cat="${esc(c)}" aria-pressed="${ui.cat === c}">${esc(c)}</button>`).join('')}
+      </div>
+      <div class="filter-row">
+        <span class="result-count" id="resultCount" aria-live="polite"></span>
+        <div class="selects">
+          ${tags.length ? `<label class="sr-only" for="tagSel">Filter by tag</label><select id="tagSel" class="input"><option value="">All tags</option>${tags.map(t => `<option value="${esc(t)}" ${ui.tag === t ? 'selected' : ''}>#${esc(t)}</option>`).join('')}</select>` : ''}
+          <label class="sr-only" for="sortSel">Sort recipes</label>
+          <select id="sortSel" class="input"><option value="az" ${ui.sort==='az'?'selected':''}>A–Z</option><option value="new" ${ui.sort==='new'?'selected':''}>Newest first</option><option value="quick" ${ui.sort==='quick'?'selected':''}>Quickest first</option><option value="cooked" ${ui.sort==='cooked'?'selected':''}>Most cooked</option></select>
+        </div>
+      </div>
+    </div>
+    ${recent.length ? `<div id="recentWrap"><div class="section-title" style="margin-top:0"><h2>Recently viewed</h2></div><div class="recent">${recent.map(r => `<a href="#/recipe/${encodeURIComponent(r.id)}"><span class="thumb">${mediaHTML(r)}</span><span class="t">${esc(r.title)}</span></a>`).join('')}</div><div class="section-title"><h2>All recipes</h2></div></div>` : ''}
+    <div class="grid" id="results"></div>
+  </div>`;
+  const q = $('#q');
+  q.addEventListener('input', debounce(() => { ui.q = q.value; updateResults(); }, 120));
+  q.addEventListener('keydown', e => { if(e.key === 'Escape'){ q.value = ''; ui.q = ''; updateResults(); q.blur(); } });
+  $$('[data-cat]').forEach(b => b.onclick = () => { ui.cat = b.dataset.cat; $$('[data-cat]').forEach(x => x.setAttribute('aria-pressed', x === b)); updateResults(); });
+  $('#tagSel')?.addEventListener('change', e => { ui.tag = e.target.value; updateResults(); });
+  $('#sortSel').addEventListener('change', e => { ui.sort = e.target.value; updateResults(); });
+  updateResults();
+}
+function filtered(){
+  const words = ui.q.toLowerCase().split(/\s+/).filter(Boolean);
+  let list = allRecipes().filter(r => {
+    if(ui.cat === 'fav' && !r.favourite) return false;
+    if(ui.cat !== 'all' && ui.cat !== 'fav' && r.category !== ui.cat) return false;
+    if(ui.tag && !r.tags.includes(ui.tag)) return false;
+    if(!words.length) return true;
+    const hay = [r.title, r.description, r.category, r.cuisine, r.tags.join(' '), r.ingredients.flatMap(g => g.items.map(i => i.item)).join(' ')].join(' ').toLowerCase();
+    return words.every(w => hay.includes(w));
+  });
+  const by = { az:(a,b) => a.title.localeCompare(b.title, 'en-GB'), new:(a,b) => (b.dateAdded||'').localeCompare(a.dateAdded||'') || a.title.localeCompare(b.title), quick:(a,b) => (a._total||9999) - (b._total||9999) || a.title.localeCompare(b.title), cooked:(a,b) => b._cooked - a._cooked || a.title.localeCompare(b.title) }[ui.sort] || (() => 0);
+  return list.sort(by);
+}
+function cardHTML(r, i = 0){
+  return `<article class="card" style="animation-delay:${Math.min(i, 12)*30}ms">
+    <a class="card-link" href="#/recipe/${encodeURIComponent(r.id)}"><span class="sr-only">${esc(r.title)}</span></a>
+    <div class="card-media">${mediaHTML(r)}</div>
+    <button class="fav-btn" data-action="fav" data-id="${esc(r.id)}" aria-pressed="${r.favourite}" aria-label="${r.favourite ? 'Remove from' : 'Add to'} favourites: ${esc(r.title)}">${icon('heart')}</button>
+    <div class="card-body">
+      ${r.category ? `<div class="eyebrow">${esc(r.category)}</div>` : ''}
+      <h3>${esc(r.title)}</h3>
+      <div class="meta">${r._total ? `<span>${icon('clock','sm')}${fmtTime(r._total)}</span>` : ''}${r.difficulty ? `<span>${icon('gauge','sm')}${esc(r.difficulty)}</span>` : ''}${r._cooked ? `<span>${icon('done','sm')}${r._cooked}×</span>` : ''}</div>
+    </div></article>`;
+}
+function updateResults(){
+  const list = filtered(), el = $('#results'); if(!el) return;
+  const active = ui.q || ui.cat !== 'all' || ui.tag;
+  const rw = $('#recentWrap'); if(rw) rw.hidden = !!active;
+  $('#resultCount').textContent = active ? `${list.length} match${list.length === 1 ? '' : 'es'}` : '';
+  el.innerHTML = list.length ? list.map(cardHTML).join('') : `<div class="empty empty-card" style="grid-column:1/-1"><h2 style="font-size:1.5rem">Nothing found</h2><p>No recipes match${ui.q ? ` “${esc(ui.q)}”` : ' these filters'}. Try another word or clear the filters.</p><button class="btn" data-action="clear-filters">Clear filters</button></div>`;
+}
+
+/* ============================ Recipe page ========================== */
+function scaleFactor(r){ const s = ui.servings[r.id] || r.servings; return r.servings ? s / r.servings : 1; }
+const unitsFor = () => ui.units || state.prefs.units;
+function ingredientsHTML(r, prefix = 'ing'){
+  const f = scaleFactor(r), sys = unitsFor(), ticks = ui.ticks[r.id] || (ui.ticks[r.id] = new Set());
+  if(!r.ingredients.some(g => g.items.length)) return `<p class="note">No ingredients listed.</p>`;
+  return r.ingredients.map((g, gi) => `<div class="ing-group">${g.group ? `<h3>${esc(g.group)}</h3>` : ''}<ul class="ing-list">${g.items.map((it, ii) => {
+    const t = ingredientText(it, f, sys), key = `${gi}-${ii}`;
+    return `<li><label class="check"><input type="checkbox" data-tick="${key}" data-rid="${esc(r.id)}" ${ticks.has(key) ? 'checked' : ''}><span class="txt">${t.qty ? `<span class="qty">${esc(t.qty)}</span> ` : ''}${esc(t.item)}${t.note ? `<span class="note">, ${esc(t.note)}</span>` : ''}</span></label></li>`;
+  }).join('')}</ul></div>`).join('');
+}
+function stepTextHTML(text){ return tempify(esc(text), unitsFor()); }
+function servingsControlHTML(r){
+  if(!r.servings) return '';
+  const s = ui.servings[r.id] || r.servings;
+  return `<div class="stepper" role="group" aria-label="Servings"><button class="icon-btn" data-action="serv" data-d="-1" aria-label="Fewer servings">${icon('minus')}</button><output aria-live="polite">${s} serving${s === 1 ? '' : 's'}</output><button class="icon-btn" data-action="serv" data-d="1" aria-label="More servings">${icon('plus')}</button></div>`;
+}
+function unitsToggleHTML(){
+  const u = unitsFor();
+  return `<div class="seg" role="group" aria-label="Units"><button data-action="units" data-u="metric" aria-pressed="${u === 'metric'}">Metric</button><button data-action="units" data-u="imperial" aria-pressed="${u === 'imperial'}">Imperial</button></div>`;
+}
+function renderRecipe(id){
+  const r = getRecipe(id), main = $('#main');
+  if(!r){ main.innerHTML = `<div class="view empty"><h2>Recipe not found</h2><p>It may have been deleted.</p><a class="btn primary" href="#/">Back to recipes</a></div>`; return; }
+  state.recent = [id, ...state.recent.filter(x => x !== id)].slice(0, 10); save();
+  const done = ui.stepsDone[id] || (ui.stepsDone[id] = new Set());
+  main.innerHTML = `<article class="view recipe">
+    <div class="r-top no-print">
+      <a class="btn ghost" href="#/" data-action="back">${icon('back')}Recipes</a>
+      <div class="right">
+        <button class="icon-btn outline fav-inline" data-action="fav" data-id="${esc(r.id)}" aria-pressed="${r.favourite}" aria-label="${r.favourite ? 'Remove from favourites' : 'Add to favourites'}" style="${r.favourite ? 'color:#E0473A' : ''}">${r.favourite ? icon('heart').replace('class="icon ', 'style="fill:currentColor" class="icon ') : icon('heart')}</button>
+        <a class="icon-btn outline" href="#/edit/${encodeURIComponent(r.id)}" aria-label="Edit recipe">${icon('edit')}</a>
+      </div>
+    </div>
+    <div class="r-hero">${mediaHTML(r, true)}</div>
+    <header class="r-head">
+      <div class="eyebrow">${[r.category, r.cuisine].filter(Boolean).map(esc).join(' · ') || 'Recipe'}</div>
+      <h1>${esc(r.title)}</h1>
+      ${r.description ? `<p class="desc">${esc(r.description)}</p>` : ''}
+    </header>
+    <div class="stats">
+      ${r.prepTime ? `<div class="stat"><div class="k">${icon('clock','sm')}Prep</div><div class="v">${fmtTime(r.prepTime)}</div></div>` : ''}
+      ${r.cookTime ? `<div class="stat"><div class="k">${icon('flame','sm')}Cook</div><div class="v">${fmtTime(r.cookTime)}</div></div>` : ''}
+      ${r.prepTime && r.cookTime ? `<div class="stat"><div class="k">${icon('timer','sm')}Total</div><div class="v">${fmtTime(r._total)}</div></div>` : ''}
+      ${r.servings ? `<div class="stat"><div class="k">${icon('users','sm')}Serves</div><div class="v">${r.servings}</div></div>` : ''}
+      ${r.difficulty ? `<div class="stat"><div class="k">${icon('gauge','sm')}Level</div><div class="v">${esc(r.difficulty)}</div></div>` : ''}
+    </div>
+    ${r.tags.length ? `<div class="tags">${r.tags.map(t => `<a class="tag" href="#/" data-action="tag" data-tag="${esc(t)}">#${esc(t)}</a>`).join('')}</div>` : ''}
+    <div class="cooked-line" id="cookedLine">${cookedLineHTML(r)}</div>
+    <div class="r-actions">
+      ${r.steps.length ? `<button class="btn primary" data-action="cook">${icon('play')}Start cooking</button>` : ''}
+      <button class="btn" data-action="cooked">${icon('done')}I cooked this</button>
+      <button class="btn" data-action="add-shop">${icon('cart')}Add to shopping list</button>
+      <button class="btn" data-action="plan-recipe">${icon('calendar')}Add to planner</button>
+      <button class="btn ghost" data-action="print">${icon('print')}Print</button>
+      <button class="btn ghost" data-action="share-recipe">${icon('share')}Share</button>
+    </div>
+    <div class="r-grid">
+      <section class="panel ingredients" aria-labelledby="ingH">
+        <h2 id="ingH">Ingredients</h2>
+        <div class="ing-controls">${servingsControlHTML(r)}${unitsToggleHTML()}</div>
+        <div id="ingList">${ingredientsHTML(r)}</div>
+      </section>
+      <section class="method" aria-labelledby="methodH">
+        <h2 id="methodH">Method</h2>
+        ${r.steps.length ? `<ol class="steps">${r.steps.map((s, i) => {
+          const mins = s.timerMinutes || detectTimer(s.text);
+          return `<li class="${done.has(i) ? 'done' : ''}" data-step="${i}"><span class="step-num" aria-hidden="true">${done.has(i) ? icon('check') : i+1}</span><div><p class="step-text"><span class="sr-only">Step ${i+1}: </span>${stepTextHTML(s.text)}</p>${mins ? `<button class="timer-chip" data-action="timer" data-step="${i}" data-min="${mins}" data-label="${esc(r.title)} · step ${i+1}">${icon('timer','sm')}<span>Start ${fmtTime(mins)} timer</span></button>` : ''}</div></li>`; }).join('')}</ol>` : '<p class="note">No steps yet – edit the recipe to add them.</p>'}
+        ${r.tips ? `<div class="box"><h3>${icon('bulb')}Tips &amp; notes</h3><p>${esc(r.tips)}</p></div>` : ''}
+        <div class="box notes-wrap"><h3><label for="myNotes">${icon('note')}My notes</label></h3>
+          <textarea id="myNotes" class="input notes-area" placeholder="Tweaks, what worked, what to try next time…">${esc(r._notes)}</textarea><div class="saved-hint" id="notesHint" aria-live="polite"></div></div>
+        ${r._notes ? `<div class="box print-only"><h3>My notes</h3><p>${esc(r._notes)}</p></div>` : ''}
+        ${r.source ? `<p class="note" style="margin-top:18px">${icon('link','sm')} Source: ${/^https?:\/\//i.test(r.source) ? `<a href="${esc(r.source)}" target="_blank" rel="noopener">${esc(r.source)}</a>` : esc(r.source)}</p>` : ''}
+        ${r.dateAdded ? `<p class="note" style="margin-top:6px;font-size:.85rem">Added ${fmtDate(r.dateAdded)}</p>` : ''}
+      </section>
+    </div>
+  </article>`;
+  const notes = $('#myNotes');
+  const saveNotes = debounce(() => { meta(r.id).notes = notes.value; invalidate(); if(save()) $('#notesHint').textContent = 'Saved'; }, 500);
+  notes.addEventListener('input', () => { $('#notesHint').textContent = 'Saving…'; saveNotes(); });
+  $$('.steps li').forEach(li => li.addEventListener('click', e => {
+    if(e.target.closest('button,a')) return;
+    const i = +li.dataset.step; done.has(i) ? done.delete(i) : done.add(i);
+    li.classList.toggle('done', done.has(i)); li.querySelector('.step-num').innerHTML = done.has(i) ? icon('check') : i+1;
+  }));
+  refreshTimerChips();
+}
+function cookedLineHTML(r){ return r._cooked ? `${icon('done')}Cooked ${r._cooked === 1 ? 'once' : r._cooked === 2 ? 'twice' : r._cooked + ' times'} · last on ${fmtDate(r._lastCooked)}` : `<span>Not cooked yet – tap “I cooked this” after you make it.</span>`; }
+function markCooked(id){
+  const m = meta(id), prev = { cooked: m.cooked || 0, lastCooked: m.lastCooked || '' };
+  m.cooked = prev.cooked + 1; m.lastCooked = todayISO(); invalidate(); save();
+  const r = getRecipe(id); const cl = $('#cookedLine'); if(cl) cl.innerHTML = cookedLineHTML(r);
+  toast(`Nice! Cooked ${m.cooked}×`, { action:{ label:'Undo', fn:() => { Object.assign(meta(id), prev); invalidate(); save(); const c = $('#cookedLine'); if(c) c.innerHTML = cookedLineHTML(getRecipe(id)); } } });
+}
+function recipeAsText(r){
+  const f = scaleFactor(r), sys = unitsFor(), s = ui.servings[r.id] || r.servings;
+  let t = `${r.title}\n${r.description ? r.description + '\n' : ''}${s ? `Serves ${s}\n` : ''}${r.prepTime ? `Prep: ${fmtTime(r.prepTime)}\n` : ''}${r.cookTime ? `Cook: ${fmtTime(r.cookTime)}\n` : ''}\nIngredients\n`;
+  for(const g of r.ingredients){ if(g.group) t += `${g.group}:\n`; for(const it of g.items){ const x = ingredientText(it, f, sys); t += `- ${[x.qty, x.item].filter(Boolean).join(' ')}${x.note ? ', ' + x.note : ''}\n`; } }
+  t += `\nMethod\n` + r.steps.map((s, i) => `${i+1}. ${s.text}`).join('\n');
+  if(r.tips) t += `\n\nNotes\n${r.tips}`;
+  return t;
+}
+
+/* ============================ Shopping list ======================== */
+function normItem(s){ return String(s).toLowerCase().replace(/[^a-z0-9à-ÿ ]+/g, ' ').replace(/\s+/g, ' ').trim().replace(/(\w{3,})oes\b/g, '$1o').replace(/(\w{3,}[^s])s\b/g, '$1'); }
+function toBase(qty, unit){
+  const c = canonUnit(unit);
+  const f = { kg:['g',1000], mg:['g',0.001], l:['ml',1000], cl:['ml',10], dl:['ml',100], lb:['oz',16] }[c];
+  if(f && qty != null) return { qty: qty*f[1], unit: f[0] };
+  return { qty, unit: c };
+}
+function shopQtyText(i){
+  if(i.qty == null) return i.raw || '';
+  let q = i.qty, u = i.unit;
+  if(u === 'g' && q >= 1000){ q /= 1000; u = 'kg'; } else if(u === 'ml' && q >= 1000){ q /= 1000; u = 'l'; } else if(u === 'oz' && q >= 16){ q /= 16; u = 'lb'; }
+  const n = fmtNum(q, u), lab = u ? unitLabel(u, q) : '';
+  return lab ? (['g','kg','ml','l','oz','lb'].includes(u) ? n + lab : `${n} ${lab}`) : n;
+}
+function addShopItem({ qty, unit, item, source }){
+  if(!item) return;
+  const pq = parseQty(qty);
+  const amount = pq ? pq.max : null;
+  if(!unit && amount != null){ const w = item.trim().split(/\s+/); const last = w[w.length-1].toLowerCase(); const cu = ALIAS_TO_UNIT[last]; if(w.length > 1 && cu && ['clove','sprig','stalk','slice','bunch','leaf','head'].includes(cu)){ unit = cu; item = w.slice(0, -1).join(' '); } }
+  const base = toBase(amount, unit);
+  const key = normItem(item) + '|' + (amount == null ? '' : base.unit);
+  let ex = state.shopping.find(s => s.key === key && !s.checked);
+  if(ex){
+    if(amount != null && ex.qty != null) ex.qty += base.qty;
+    if(source && !ex.sources.includes(source)) ex.sources.push(source);
+  } else {
+    state.shopping.push({ id: uid(), key, qty: amount == null ? null : base.qty, unit: amount == null ? '' : base.unit, raw: amount == null ? String(qty || '') : '', item: item.trim(), sources: source ? [source] : [], checked:false });
+  }
+}
+function addRecipeToShopping(r, servings){
+  const f = r.servings && servings ? servings / r.servings : 1, sys = state.prefs.units;
+  let n = 0;
+  for(const g of r.ingredients) for(const it of g.items){
+    const pq = parseQty(it.qty);
+    if(pq){ const c = convert(pq.max*f, it.unit, sys); addShopItem({ qty: c.qty, unit: c.unit, item: it.item, source: r.title }); }
+    else addShopItem({ qty: it.qty || '', unit: '', item: it.item, source: r.title });
+    n++;
+  }
+  return n;
+}
+function renderShopping(){
+  const main = $('#main');
+  const todo = state.shopping.filter(i => !i.checked), got = state.shopping.filter(i => i.checked);
+  const row = i => `<li><label class="check"><input type="checkbox" data-shop="${i.id}" ${i.checked ? 'checked' : ''}><span class="txt">${shopQtyText(i) ? `<span class="qty">${esc(shopQtyText(i))}</span> ` : ''}${esc(i.item)}${i.sources.length ? `<span class="from">for ${esc(i.sources.join(', '))}</span>` : ''}</span></label><button class="icon-btn sm" data-action="shop-del" data-id="${i.id}" aria-label="Remove ${esc(i.item)}">${icon('x','sm')}</button></li>`;
+  main.innerHTML = `<div class="view">
+    <div class="page-head"><div><div class="eyebrow">Shopping</div><h1>Shopping list</h1><p class="sub">${todo.length ? `${todo.length} item${todo.length === 1 ? '' : 's'} to buy` : state.shopping.length ? 'All done – everything’s in the basket.' : 'Nothing on the list yet.'}</p></div></div>
+    <form class="shop-add" id="shopAdd"><label for="shopIn" class="sr-only">Add an item</label><input id="shopIn" class="input" placeholder="Add an item, e.g. 2 lemons" autocomplete="off" enterkeyhint="done"><button class="btn primary" type="submit">${icon('plus')}<span>Add</span></button></form>
+    ${state.shopping.length ? `
+      ${todo.length ? `<ul class="shop-list">${todo.map(row).join('')}</ul>` : ''}
+      ${got.length ? `<div class="section-title"><h2>In the basket <span class="note" style="font-family:var(--sans);font-size:.9rem">(${got.length})</span></h2></div><ul class="shop-list">${got.map(row).join('')}</ul>` : ''}
+      <div class="shop-actions">
+        <button class="btn" data-action="shop-share">${icon('share')}Share</button>
+        <button class="btn" data-action="shop-copy">${icon('copy')}Copy as text</button>
+        <button class="btn" data-action="shop-clear-ticked" ${got.length ? '' : 'disabled'}>${icon('check')}Clear ticked</button>
+        <button class="btn danger" data-action="shop-clear-all">${icon('trash')}Clear all</button>
+      </div>` : `<div class="empty empty-card">${icon('cart','lg')}<h2 style="font-size:1.5rem">Your list is empty</h2><p>Add ingredients from any recipe, send a whole week from the meal planner, or type items above.</p></div>`}
+  </div>`;
+  $('#shopAdd').addEventListener('submit', e => {
+    e.preventDefault(); const v = $('#shopIn').value.trim(); if(!v) return;
+    const p = parseIngredientLine(v); addShopItem({ qty: p.qty, unit: p.unit, item: p.item || v });
+    save(); renderShopping(); updateChrome(); $('#shopIn').focus();
+  });
+}
+function shoppingText(){
+  const todo = state.shopping.filter(i => !i.checked);
+  return `Shopping list\n` + (todo.length ? todo : state.shopping).map(i => `☐ ${[shopQtyText(i), i.item].filter(Boolean).join(' ')}`).join('\n');
+}
+
+/* ============================ Add / edit form ====================== */
+const CATEGORIES = ['Breakfast','Starters','Soups','Salads','Mains','Pasta','Sides','Sauces','Snacks','Baking','Desserts','Drinks'];
+let draft = null, draftDirty = false, draftIsNew = true;
+function blankRecipe(){ return { id:'', title:'', description:'', category:'', cuisine:'', tags:[], servings:4, prepTime:'', cookTime:'', difficulty:'Easy', ingredients:[{ group:'', items:[{ qty:'', unit:'', item:'', note:'' }] }], steps:[{ text:'' }], tips:'', photo:'', source:'', dateAdded: todayISO(), favourite:false }; }
+function renderForm(id, openPaste = false){
+  const main = $('#main');
+  const existing = id ? getRecipe(id) : null;
+  if(id && !existing){ main.innerHTML = `<div class="view empty"><h2>Recipe not found</h2><a class="btn primary" href="#/">Back to recipes</a></div>`; return; }
+  draftIsNew = !existing;
+  draft = existing ? clone(normRecipe(existing)) : blankRecipe();
+  if(existing) draft.favourite = existing.favourite;
+  if(!draft.ingredients.length) draft.ingredients = [{ group:'', items:[{ qty:'', unit:'', item:'', note:'' }] }];
+  if(!draft.steps.length) draft.steps = [{ text:'' }];
+  draftDirty = false;
+  main.innerHTML = `<div class="view">
+    <div class="page-head"><div><div class="eyebrow">${existing ? 'Edit recipe' : 'New recipe'}</div><h1>${existing ? esc(existing.title) : 'Add a recipe'}</h1></div></div>
+    <form class="form" id="recipeForm" novalidate>
+      ${existing ? '' : `<details class="importer" ${openPaste ? 'open' : ''}><summary>${icon('clipboard')}Quick import – paste a recipe${icon('down','chev')}</summary>
+        <p class="hint" style="margin-top:8px">Paste plain text: the title on the first line, then an <b>Ingredients</b> heading and a <b>Method</b> (or Steps) heading. “Serves 4”, “Prep: 15 min” and a <b>Notes</b> section are picked up too. You can check everything before saving.</p>
+        <label for="pasteIn" class="sr-only">Recipe text</label>
+        <textarea id="pasteIn" class="input" placeholder="Mum’s lasagne&#10;Serves 6&#10;Prep: 30 min&#10;&#10;Ingredients&#10;500g beef mince&#10;1 onion, finely chopped&#10;&#10;Method&#10;1. Brown the mince…&#10;2. Bake at 180°C for 40 minutes."></textarea>
+        <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><button type="button" class="btn primary" data-action="parse">${icon('sparkle')}Fill in the form</button><button type="button" class="btn ghost" data-action="paste-clip">${icon('clipboard')}Paste from clipboard</button></div>
+      </details>`}
+      <div id="formBody"></div>
+      <div class="form-actions">
+        ${existing ? `<button type="button" class="btn danger left" data-action="delete-recipe">${icon('trash')}<span>Delete</span></button>` : ''}
+        <button type="button" class="btn ghost" data-action="cancel-form">Cancel</button>
+        <button type="submit" class="btn primary">${icon('check')}${existing ? 'Save changes' : 'Save recipe'}</button>
+      </div>
+    </form></div>`;
+  renderFormBody();
+  const form = $('#recipeForm');
+  form.addEventListener('input', onFormInput);
+  form.addEventListener('change', onFormInput);
+  form.addEventListener('submit', e => { e.preventDefault(); submitForm(); });
+  if(openPaste) setTimeout(() => $('#pasteIn')?.focus(), 50);
+}
+function renderFormBody(){
+  const d = draft;
+  $('#formBody').innerHTML = `
+  <div class="form" style="gap:22px">
+  <section class="form-section"><h2>The basics</h2><p class="hint">Only the title is required.</p>
+    <div class="row" style="gap:14px">
+      <div class="field"><label for="f-title">Title *</label><input id="f-title" class="input" data-f="title" value="${esc(d.title)}" required autocomplete="off"><span class="error-msg" id="titleErr" hidden>Please give the recipe a title.</span></div>
+      <div class="field"><label for="f-desc">Short description</label><textarea id="f-desc" class="input" data-f="description" style="min-height:80px" placeholder="What makes it special?">${esc(d.description)}</textarea></div>
+      <div class="row c2">
+        <div class="field"><label for="f-cat">Category</label><input id="f-cat" class="input" data-f="category" list="catList" value="${esc(d.category)}" placeholder="e.g. Mains"><datalist id="catList">${[...new Set([...CATEGORIES, ...allRecipes().map(r => r.category).filter(Boolean)])].map(c => `<option value="${esc(c)}">`).join('')}</datalist></div>
+        <div class="field"><label for="f-cui">Cuisine</label><input id="f-cui" class="input" data-f="cuisine" value="${esc(d.cuisine)}" placeholder="e.g. Belgian, Italian"></div>
+      </div>
+      <div class="field"><label for="f-tags">Tags</label><input id="f-tags" class="input" data-f="tags" value="${esc(d.tags.join(', '))}" placeholder="e.g. vegetarian, quick, freezable"><span class="hint">Separate with commas.</span></div>
+      <div class="row c4">
+        <div class="field"><label for="f-serv">Servings</label><input id="f-serv" class="input" type="number" min="1" max="100" inputmode="numeric" data-f="servings" value="${esc(d.servings || '')}"></div>
+        <div class="field"><label for="f-prep">Prep (min)</label><input id="f-prep" class="input" type="number" min="0" inputmode="numeric" data-f="prepTime" value="${esc(d.prepTime || '')}"></div>
+        <div class="field"><label for="f-cook">Cook (min)</label><input id="f-cook" class="input" type="number" min="0" inputmode="numeric" data-f="cookTime" value="${esc(d.cookTime || '')}"></div>
+        <div class="field"><label for="f-diff">Difficulty</label><select id="f-diff" class="input" data-f="difficulty">${['','Easy','Medium','Hard'].map(x => `<option value="${x}" ${d.difficulty === x ? 'selected' : ''}>${x || '—'}</option>`).join('')}</select></div>
+      </div>
+    </div>
+  </section>
+  <section class="form-section"><h2>Photo</h2><p class="hint">Optional. Photos are resized and compressed so they don’t fill up your device.</p>
+    <div class="photo-drop"><div class="photo-prev">${d.photo ? `<img src="${esc(d.photo)}" alt="Recipe photo preview">` : mediaHTML({ title: d.title || 'R', id:'prev' })}</div>
+      <div style="display:flex;flex-direction:column;gap:8px"><label class="btn" for="f-photo">${icon('camera')}${d.photo ? 'Change photo' : 'Add a photo'}</label><input id="f-photo" type="file" accept="image/*" class="sr-only">${d.photo ? `<button type="button" class="btn ghost danger" data-action="photo-remove">${icon('trash')}Remove</button>` : ''}</div></div>
+  </section>
+  <section class="form-section"><h2>Ingredients</h2><p class="hint">Quantity, unit, ingredient and an optional note (e.g. “finely chopped”). Fractions like 1/2 or ranges like 2-3 work. Use groups for parts like “For the sauce”.</p>
+    <div id="ingEditor">${d.ingredients.map((g, gi) => `<div class="ing-edit-group">
+      <div class="ghead"><label class="sr-only" for="g-${gi}">Group name</label><input id="g-${gi}" class="input" data-g="${gi}" data-gf="group" value="${esc(g.group)}" placeholder="${d.ingredients.length > 1 ? 'Group name, e.g. For the sauce' : 'Group name (optional)'}" style="min-height:40px">
+        ${d.ingredients.length > 1 ? `<div class="row-tools"><button type="button" class="icon-btn" data-action="g-up" data-g="${gi}" aria-label="Move group up" ${gi ? '' : 'disabled'}>${icon('up','sm')}</button><button type="button" class="icon-btn" data-action="g-down" data-g="${gi}" aria-label="Move group down" ${gi < d.ingredients.length-1 ? '' : 'disabled'}>${icon('down','sm')}</button><button type="button" class="icon-btn del" data-action="g-del" data-g="${gi}" aria-label="Remove group">${icon('trash','sm')}</button></div>` : ''}</div>
+      ${g.items.map((it, ii) => `<div class="ing-row">
+        <input class="input" data-g="${gi}" data-i="${ii}" data-k="qty" value="${esc(it.qty)}" placeholder="Qty" aria-label="Quantity ${ii+1}" inputmode="decimal">
+        <input class="input" data-g="${gi}" data-i="${ii}" data-k="unit" value="${esc(it.unit)}" placeholder="Unit" aria-label="Unit ${ii+1}" list="unitList">
+        <input class="input" data-g="${gi}" data-i="${ii}" data-k="item" value="${esc(it.item)}" placeholder="Ingredient" aria-label="Ingredient ${ii+1}">
+        <input class="input note-in" data-g="${gi}" data-i="${ii}" data-k="note" value="${esc(it.note)}" placeholder="Note" aria-label="Note for ingredient ${ii+1}">
+        <div class="row-tools"><button type="button" class="icon-btn" data-action="i-up" data-g="${gi}" data-i="${ii}" aria-label="Move up" ${ii ? '' : 'disabled'}>${icon('up','sm')}</button><button type="button" class="icon-btn" data-action="i-down" data-g="${gi}" data-i="${ii}" aria-label="Move down" ${ii < g.items.length-1 ? '' : 'disabled'}>${icon('down','sm')}</button><button type="button" class="icon-btn del" data-action="i-del" data-g="${gi}" data-i="${ii}" aria-label="Remove ingredient">${icon('x','sm')}</button></div>
+      </div>`).join('')}
+      <button type="button" class="btn sm" data-action="i-add" data-g="${gi}">${icon('plus','sm')}Add ingredient</button>
+    </div>`).join('')}
+    <datalist id="unitList">${['g','kg','ml','l','tsp','tbsp','cup','pinch','clove','tin','bunch','handful','slice','pack','oz','lb'].map(u => `<option value="${u}">`).join('')}</datalist>
+    <button type="button" class="btn ghost sm" data-action="g-add">${icon('plus','sm')}Add a group</button></div>
+  </section>
+  <section class="form-section"><h2>Method</h2><p class="hint">One step per box. Add a timer (in minutes) for a one-tap timer in cook mode – times like “10 minutes” in the text are spotted automatically too.</p>
+    <div id="stepEditor">${d.steps.map((s, si) => `<div class="step-row"><span class="num" aria-hidden="true">${si+1}</span>
+      <div><label class="sr-only" for="s-${si}">Step ${si+1}</label><textarea id="s-${si}" class="input" data-s="${si}" data-k="text" placeholder="Describe step ${si+1}…">${esc(s.text)}</textarea>
+      <div class="timer-in">${icon('timer','sm')}<label for="st-${si}">Timer</label><input id="st-${si}" class="input" type="number" min="0" step="1" inputmode="numeric" data-s="${si}" data-k="timerMinutes" value="${esc(s.timerMinutes || '')}" placeholder="min"></div></div>
+      <div class="row-tools" style="flex-direction:column"><button type="button" class="icon-btn" data-action="s-up" data-s="${si}" aria-label="Move step up" ${si ? '' : 'disabled'}>${icon('up','sm')}</button><button type="button" class="icon-btn" data-action="s-down" data-s="${si}" aria-label="Move step down" ${si < d.steps.length-1 ? '' : 'disabled'}>${icon('down','sm')}</button><button type="button" class="icon-btn del" data-action="s-del" data-s="${si}" aria-label="Remove step">${icon('x','sm')}</button></div>
+    </div>`).join('')}</div>
+    <button type="button" class="btn sm" data-action="s-add">${icon('plus','sm')}Add step</button>
+  </section>
+  <section class="form-section"><h2>Extras</h2>
+    <div class="row" style="gap:14px">
+      <div class="field"><label for="f-tips">Tips &amp; notes</label><textarea id="f-tips" class="input" data-f="tips" placeholder="Serving suggestions, make-ahead, storage…">${esc(d.tips)}</textarea></div>
+      <div class="row c2"><div class="field"><label for="f-src">Source</label><input id="f-src" class="input" data-f="source" value="${esc(d.source)}" placeholder="Where it’s from (text or link)"></div>
+      <div class="field"><label for="f-date">Date added</label><input id="f-date" class="input" type="date" data-f="dateAdded" value="${esc(d.dateAdded)}"></div></div>
+      <label class="switch"><input type="checkbox" data-f="favourite" ${d.favourite ? 'checked' : ''}>Favourite</label>
+    </div>
+  </section></div>`;
+}
+function onFormInput(e){
+  const t = e.target; if(!draft) return;
+  if(t.id === 'pasteIn') return;
+  if(t.id === 'f-photo'){ if(e.type === 'change' && t.files[0]) handlePhoto(t.files[0]); return; }
+  draftDirty = true;
+  if(t.dataset.f){
+    const f = t.dataset.f;
+    draft[f] = f === 'tags' ? t.value.split(',').map(s => s.trim()).filter(Boolean) : f === 'favourite' ? t.checked : t.value;
+    if(f === 'title'){ t.removeAttribute('aria-invalid'); $('#titleErr').hidden = true; }
+  } else if(t.dataset.gf){ draft.ingredients[+t.dataset.g].group = t.value; }
+  else if(t.dataset.k && t.dataset.i != null && t.dataset.g != null){ draft.ingredients[+t.dataset.g].items[+t.dataset.i][t.dataset.k] = t.value; }
+  else if(t.dataset.s != null && t.dataset.k){ draft.steps[+t.dataset.s][t.dataset.k] = t.dataset.k === 'timerMinutes' ? (+t.value || undefined) : t.value; }
+}
+function handlePhoto(file){
+  const reader = new FileReader();
+  reader.onload = () => {
+    const img = new Image();
+    img.onload = () => {
+      const max = 1200, s = Math.min(1, max / Math.max(img.width, img.height));
+      const c = document.createElement('canvas'); c.width = Math.round(img.width*s); c.height = Math.round(img.height*s);
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      let q = 0.8, url = c.toDataURL('image/jpeg', q);
+      while(url.length > 350000 && q > 0.4){ q -= 0.1; url = c.toDataURL('image/jpeg', q); }
+      draft.photo = url; draftDirty = true; renderFormBody();
+      toast(`Photo added (${Math.round(url.length*0.75/1024)} KB)`);
+    };
+    img.onerror = () => toast('That file doesn’t look like an image', { error:true });
+    img.src = reader.result;
+  };
+  reader.readAsDataURL(file);
+}
+function formStructural(action, el){
+  const g = +el.dataset.g, i = +el.dataset.i, s = +el.dataset.s;
+  const swap = (arr, a, b) => { if(b < 0 || b >= arr.length) return; [arr[a], arr[b]] = [arr[b], arr[a]]; };
+  let focusSel = null;
+  switch(action){
+    case 'i-add': draft.ingredients[g].items.push({ qty:'', unit:'', item:'', note:'' }); focusSel = `[data-g="${g}"][data-i="${draft.ingredients[g].items.length-1}"][data-k="qty"]`; break;
+    case 'i-del': draft.ingredients[g].items.splice(i, 1); if(!draft.ingredients[g].items.length && draft.ingredients.length > 1) draft.ingredients.splice(g, 1); else if(!draft.ingredients[g].items.length) draft.ingredients[g].items.push({ qty:'', unit:'', item:'', note:'' }); break;
+    case 'i-up': swap(draft.ingredients[g].items, i, i-1); focusSel = `[data-action="i-up"][data-g="${g}"][data-i="${Math.max(i-1,0)}"]`; break;
+    case 'i-down': swap(draft.ingredients[g].items, i, i+1); focusSel = `[data-action="i-down"][data-g="${g}"][data-i="${i+1}"]`; break;
+    case 'g-add': draft.ingredients.push({ group:'', items:[{ qty:'', unit:'', item:'', note:'' }] }); focusSel = `#g-${draft.ingredients.length-1}`; break;
+    case 'g-del': draft.ingredients.splice(g, 1); break;
+    case 'g-up': swap(draft.ingredients, g, g-1); break;
+    case 'g-down': swap(draft.ingredients, g, g+1); break;
+    case 's-add': draft.steps.push({ text:'' }); focusSel = `#s-${draft.steps.length-1}`; break;
+    case 's-del': draft.steps.splice(s, 1); if(!draft.steps.length) draft.steps.push({ text:'' }); break;
+    case 's-up': swap(draft.steps, s, s-1); focusSel = `[data-action="s-up"][data-s="${Math.max(s-1,0)}"]`; break;
+    case 's-down': swap(draft.steps, s, s+1); focusSel = `[data-action="s-down"][data-s="${s+1}"]`; break;
+    case 'photo-remove': draft.photo = ''; break;
+  }
+  draftDirty = true;
+  renderFormBody();
+  if(focusSel){ const f = $(focusSel); if(f && !f.disabled) f.focus(); }
+}
+function submitForm(){
+  if(!draft.title.trim()){ const t = $('#f-title'); t.setAttribute('aria-invalid','true'); $('#titleErr').hidden = false; t.focus(); t.scrollIntoView({ block:'center', behavior:'smooth' }); return; }
+  const r = clone(draft);
+  r.title = r.title.trim();
+  r.ingredients = r.ingredients.map(g => ({ group: g.group.trim(), items: g.items.map(it => ({ qty: /^\d+(\.\d+)?$/.test(String(it.qty).trim()) ? +it.qty : String(it.qty).trim(), unit: it.unit.trim(), item: it.item.trim(), note: it.note.trim() })).filter(it => it.item || it.qty) })).filter(g => g.items.length);
+  r.steps = r.steps.map(s => ({ text: s.text.trim(), ...(s.timerMinutes ? { timerMinutes: +s.timerMinutes } : {}) })).filter(s => s.text);
+  ['servings','prepTime','cookTime'].forEach(k => r[k] = +r[k] || 0);
+  if(!r.id){ let base = slug(r.title) || 'recipe', id = base, n = 2; while(getRecipe(id)) id = `${base}-${n++}`; r.id = id; }
+  if(!r.dateAdded) r.dateAdded = todayISO();
+  const fav = r.favourite;
+  if(saveRecipe(r)){
+    meta(r.id).fav = fav; invalidate(); save();
+    draftDirty = false; toast(draftIsNew ? 'Recipe saved to your cookbook' : 'Changes saved');
+    go('#/recipe/' + encodeURIComponent(r.id));
+  }
+}
+function applyParsed(p){
+  if(!p.title && !p.ingredients[0].items.length && !p.steps.length){ toast('Nothing to import – paste some recipe text first', { error:true }); return; }
+  draft.title = p.title || draft.title; draft.description = p.description || draft.description;
+  if(p.servings) draft.servings = p.servings; if(p.prepTime) draft.prepTime = p.prepTime; if(p.cookTime) draft.cookTime = p.cookTime;
+  if(p.ingredients.some(g => g.items.length)) draft.ingredients = p.ingredients;
+  if(p.steps.length) draft.steps = p.steps;
+  if(p.tips) draft.tips = p.tips;
+  draftDirty = true; renderFormBody();
+  const n = p.ingredients.reduce((a, g) => a + g.items.length, 0);
+  toast(p._found ? `Imported ${n} ingredient${n === 1 ? '' : 's'} and ${p.steps.length} step${p.steps.length === 1 ? '' : 's'} – check and save` : 'Couldn’t find “Ingredients” / “Method” headings – please check the fields', { error: !p._found, timeout: 5000 });
+  $('.importer')?.removeAttribute('open');
+  $('#f-title')?.focus();
+}
+
+/* ============================= Planner ============================= */
+const MEALS = [['breakfast','Breakfast'],['lunch','Lunch'],['dinner','Dinner']];
+function weekStart(offset = 0){ const d = new Date(); d.setHours(12,0,0,0); const day = (d.getDay() + 6) % 7; d.setDate(d.getDate() - day + offset*7); return d; }
+function weekDays(offset){ const s = weekStart(offset); return Array.from({ length:7 }, (_, i) => { const d = new Date(s); d.setDate(s.getDate() + i); return d; }); }
+function renderPlanner(){
+  const days = weekDays(ui.weekOffset), main = $('#main'), today = todayISO();
+  const label = ui.weekOffset === 0 ? 'This week' : ui.weekOffset === 1 ? 'Next week' : ui.weekOffset === -1 ? 'Last week' : '';
+  const range = `${days[0].toLocaleDateString('en-GB', { day:'numeric', month:'short' })} – ${days[6].toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' })}`;
+  const planned = days.reduce((n, d) => n + MEALS.reduce((m, [k]) => m + ((state.planner[isoDate(d)] || {})[k] || []).length, 0), 0);
+  main.innerHTML = `<div class="view">
+    <div class="page-head"><div><div class="eyebrow">Meal planner</div><h1>${label || 'Week'} <span style="font-weight:400;color:var(--muted);font-size:.55em;font-family:var(--sans);letter-spacing:0">${range}</span></h1></div>
+      <div class="week-nav"><button class="icon-btn outline" data-action="week" data-d="-1" aria-label="Previous week">${icon('left')}</button>${ui.weekOffset ? `<button class="btn sm" data-action="week" data-d="0">Today</button>` : ''}<button class="icon-btn outline" data-action="week" data-d="1" aria-label="Next week">${icon('right')}</button></div></div>
+    <div class="shop-actions" style="margin-top:0">
+      <button class="btn primary" data-action="week-shop" ${planned ? '' : 'disabled'}>${icon('cart')}Send week to shopping list</button>
+      <button class="btn ghost" data-action="week-clear" ${planned ? '' : 'disabled'}>${icon('trash')}Clear week</button>
+    </div>
+    ${allRecipes().length ? '' : `<p class="hint" style="margin-bottom:14px">Once you’ve added recipes you can plan them here. You can already add notes such as “Eating out”.</p>`}
+    <div class="days">${days.map((d, di) => { const key = isoDate(d), plan = state.planner[key] || {}; return `<section class="day ${key === today ? 'today' : ''}" style="animation-delay:${di*35}ms" aria-label="${d.toLocaleDateString('en-GB', { weekday:'long', day:'numeric', month:'long' })}">
+      <div class="day-head"><h3>${d.toLocaleDateString('en-GB', { weekday:'long' })}${key === today ? '<span class="today-pill">Today</span>' : ''}</h3><span class="date">${d.toLocaleDateString('en-GB', { day:'numeric', month:'short' })}</span></div>
+      ${MEALS.map(([k, name]) => `<div class="meal"><span class="mlabel">${name}</span><div class="entries">${(plan[k] || []).map((e, ei) => { const r = e.recipeId && getRecipe(e.recipeId);
+        if(e.recipeId && !r) return '';
+        return r ? `<span class="entry"><a href="#/recipe/${encodeURIComponent(r.id)}">${esc(r.title)}</a>${e.servings && e.servings !== r.servings ? `<small>for ${e.servings}</small>` : ''}<button class="icon-btn" data-action="plan-del" data-date="${key}" data-meal="${k}" data-i="${ei}" aria-label="Remove ${esc(r.title)}">${icon('x','sm')}</button></span>`
+                 : `<span class="entry note-entry"><span>${esc(e.note)}</span><button class="icon-btn" data-action="plan-del" data-date="${key}" data-meal="${k}" data-i="${ei}" aria-label="Remove note">${icon('x','sm')}</button></span>`; }).join('')}
+        <button class="add-slot" data-action="plan-add" data-date="${key}" data-meal="${k}" aria-label="Add to ${name} on ${d.toLocaleDateString('en-GB', { weekday:'long' })}">${icon('plus','sm')}Add</button></div></div>`).join('')}
+    </section>`; }).join('')}</div></div>`;
+}
+function planAddDialog(date, meal){
+  const recipes = allRecipes().slice().sort((a,b) => a.title.localeCompare(b.title));
+  let selected = null;
+  const dayName = parseISO(date).toLocaleDateString('en-GB', { weekday:'long', day:'numeric', month:'short' });
+  openModal({ title:`${MEALS.find(m => m[0] === meal)[1]} · ${dayName}`,
+    body: `${recipes.length ? `<div class="search" style="margin-bottom:4px">${icon('search')}<label class="sr-only" for="pickQ">Search recipes</label><input id="pickQ" class="input" placeholder="Search your recipes…" autocomplete="off"></div>
+      <ul class="pick-list" id="pickList"></ul>
+      <div class="field" style="margin-top:12px"><label for="pickServ">Servings</label><input id="pickServ" class="input" type="number" min="1" inputmode="numeric" placeholder="As written"></div>
+      <p class="hint" style="margin:14px 0 6px">…or add a note instead</p>` : `<p class="hint" style="margin-bottom:8px">No recipes yet – add a note instead.</p>`}
+      <div class="field"><label for="pickNote" class="sr-only">Note</label><input id="pickNote" class="input" placeholder="e.g. Eating out, Leftovers"></div>`,
+    footer:`<button class="btn" data-close>Cancel</button><button class="btn primary" data-ok>Add to plan</button>`,
+    onOpen:(m, close) => {
+      const list = $('#pickList', m);
+      const draw = q => { if(!list) return; const w = (q || '').toLowerCase(); const items = recipes.filter(r => r.title.toLowerCase().includes(w));
+        list.innerHTML = items.length ? items.map(r => `<li><button type="button" data-pick="${esc(r.id)}" aria-pressed="${selected === r.id}"><span class="thumb">${mediaHTML(r)}</span><span><b>${esc(r.title)}</b><br><span class="note" style="font-size:.82rem">${[r.category, r._total ? fmtTime(r._total) : '', r.servings ? 'serves ' + r.servings : ''].filter(Boolean).join(' · ')}</span></span></button></li>`).join('') : '<li class="note">No matches</li>'; };
+      draw('');
+      $('#pickQ', m)?.addEventListener('input', e => draw(e.target.value));
+      list?.addEventListener('click', e => { const b = e.target.closest('[data-pick]'); if(!b) return; selected = b.dataset.pick; $$('[data-pick]', list).forEach(x => x.setAttribute('aria-pressed', x === b)); const r = getRecipe(selected); const sv = $('#pickServ', m); if(r && r.servings && !sv.value) sv.placeholder = `${r.servings} (as written)`; });
+      list?.addEventListener('dblclick', e => { if(e.target.closest('[data-pick]')) m.querySelector('[data-ok]').click(); });
+      m.querySelector('[data-ok]').onclick = () => {
+        const note = $('#pickNote', m).value.trim();
+        if(!selected && !note){ toast('Pick a recipe or type a note', { error:true }); return; }
+        const day = (state.planner[date] ||= {}); const arr = (day[meal] ||= []);
+        if(selected){ const r = getRecipe(selected); arr.push({ recipeId: selected, servings: +$('#pickServ', m).value || r.servings || 0 }); }
+        if(note) arr.push({ note });
+        save(); close(); renderPlanner();
+      };
+    } });
+}
+function planRecipeDialog(r){
+  const opts = Array.from({ length:14 }, (_, i) => { const d = new Date(); d.setDate(d.getDate() + i); return d; });
+  openModal({ title:`Plan “${r.title}”`,
+    body:`<div class="row" style="gap:12px"><div class="field"><label for="prDay">Day</label><select id="prDay" class="input">${opts.map((d, i) => `<option value="${isoDate(d)}">${i === 0 ? 'Today – ' : i === 1 ? 'Tomorrow – ' : ''}${d.toLocaleDateString('en-GB', { weekday:'long', day:'numeric', month:'short' })}</option>`).join('')}</select></div>
+      <div class="field"><label for="prMeal">Meal</label><select id="prMeal" class="input">${MEALS.map(([k, n]) => `<option value="${k}" ${k === 'dinner' ? 'selected' : ''}>${n}</option>`).join('')}</select></div>
+      ${r.servings ? `<div class="field"><label for="prServ">Servings</label><input id="prServ" class="input" type="number" min="1" inputmode="numeric" value="${ui.servings[r.id] || r.servings}"></div>` : ''}</div>`,
+    footer:`<button class="btn" data-close>Cancel</button><button class="btn primary" data-ok>${icon('calendar')}Add to planner</button>`,
+    onOpen:(m, close) => { m.querySelector('[data-ok]').onclick = () => {
+      const date = $('#prDay', m).value, meal = $('#prMeal', m).value;
+      ((state.planner[date] ||= {})[meal] ||= []).push({ recipeId: r.id, servings: +($('#prServ', m)?.value) || r.servings || 0 });
+      save(); close(); toast(`Added to ${parseISO(date).toLocaleDateString('en-GB', { weekday:'long' })}’s ${meal}`, { action:{ label:'View', fn:() => { const diff = Math.floor((parseISO(date) - weekStart(0)) / (7*864e5)); ui.weekOffset = diff; go('#/planner'); } } });
+    }; } });
+}
+
+/* ========================== Settings / backup ====================== */
+function renderMore(){
+  const bytes = new Blob([localStorage.getItem(STORE_KEY) || '']).size;
+  const n = allRecipes().length;
+  $('#main').innerHTML = `<div class="view"><div class="page-head"><div><div class="eyebrow">Settings</div><h1>Settings &amp; backup</h1></div></div>
+  <div class="settings">
+    <section class="panel"><h2 style="font-size:1.3rem;margin-bottom:6px">Appearance</h2>
+      <div class="set-row"><div class="t"><b>Theme</b><span>Follow your device, or choose.</span></div><div class="seg" role="group" aria-label="Theme">${['system','light','dark'].map(t => `<button data-action="set-theme" data-t="${t}" aria-pressed="${state.prefs.theme === t}">${t[0].toUpperCase() + t.slice(1)}</button>`).join('')}</div></div>
+      <div class="set-row"><div class="t"><b>Default units</b><span>Used for recipes and the shopping list.</span></div><div class="seg" role="group" aria-label="Default units">${['metric','imperial'].map(u => `<button data-action="set-units" data-u="${u}" aria-pressed="${state.prefs.units === u}">${u[0].toUpperCase() + u.slice(1)}</button>`).join('')}</div></div>
+      <div class="set-row"><div class="t"><label for="cbName"><b>Cookbook name</b></label><span>Shown at the top of the app.</span></div><input id="cbName" class="input" style="max-width:260px" value="${esc(state.prefs.name)}"></div>
+    </section>
+    <section class="panel"><h2 style="font-size:1.3rem;margin-bottom:6px">Backup &amp; restore</h2>
+      <p class="hint">Your recipes are saved in this browser on this device. Export a backup now and then – and use it to move your cookbook to another phone or computer.</p>
+      <div class="set-row"><div class="t"><b>Export everything</b><span>${n} recipe${n === 1 ? '' : 's'}, notes, planner and shopping list as a .json file.</span></div><button class="btn" data-action="export">${icon('download')}Export backup</button></div>
+      <div class="set-row"><div class="t"><b>Import a backup</b><span>Merge with what’s here, or replace it.</span></div><button class="btn" data-action="import">${icon('upload')}Import backup</button></div>
+      <div class="set-row"><div class="t"><b>Export recipes for the built-in list</b><span>Recipes only, formatted for the <code>BUILT_IN_RECIPES</code> block in the app file.</span></div><button class="btn ghost" data-action="export-builtin" ${n ? '' : 'disabled'}>${icon('copy')}Export</button></div>
+      <div class="set-row"><div class="t"><b>Storage used</b><span>${bytes < 1024*1024 ? Math.max(1, Math.round(bytes/1024)) + ' KB' : (bytes/1048576).toFixed(1) + ' MB'} of about 5 MB available to the app.</span></div></div>
+    </section>
+    <section class="panel"><h2 style="font-size:1.3rem;margin-bottom:6px">Add to your home screen</h2>
+      <p class="hint">On iPhone: open this page in Safari, tap Share → “Add to Home Screen”. On Android: Chrome menu → “Add to Home screen”. It then opens full-screen like an app.</p>
+    </section>
+    <section class="panel"><h2 style="font-size:1.3rem;margin-bottom:6px">Danger zone</h2>
+      <div class="set-row"><div class="t"><b>Erase all data on this device</b><span>Deletes recipes you added here, notes, planner and shopping list.</span></div><button class="btn danger" data-action="erase">${icon('trash')}Erase…</button></div>
+    </section>
+    <p class="hint" style="text-align:center">Keyboard: <kbd>/</kbd> search · <kbd>←</kbd> <kbd>→</kbd> steps in cook mode · <kbd>Esc</kbd> close</p>
+  </div></div>`;
+  $('#cbName').addEventListener('input', debounce(e => { state.prefs.name = e.target.value.trim() || 'Adam’s Cookbook'; save(); updateChrome(); }, 300));
+}
+function exportBackup(){
+  const data = { app:'adams-cookbook', version:1, exportedAt: new Date().toISOString(), data: state };
+  download(`cookbook-backup-${todayISO()}.json`, JSON.stringify(data, null, 2));
+  toast('Backup downloaded');
+}
+function importBackup(file){
+  const reader = new FileReader();
+  reader.onload = () => {
+    let parsed; try{ parsed = JSON.parse(reader.result); }catch(e){ toast('That file isn’t valid JSON', { error:true }); return; }
+    let incoming;
+    if(Array.isArray(parsed)) incoming = { recipes: parsed };
+    else if(parsed && parsed.data && typeof parsed.data === 'object') incoming = parsed.data;
+    else if(parsed && Array.isArray(parsed.recipes)) incoming = parsed;
+    else { toast('This doesn’t look like a cookbook backup', { error:true }); return; }
+    const recs = (incoming.recipes || []).filter(r => r && r.title);
+    openModal({ title:'Import backup', body:`<p>Found <b>${recs.length}</b> recipe${recs.length === 1 ? '' : 's'}${incoming.shopping ? `, ${incoming.shopping.length} shopping item${incoming.shopping.length === 1 ? '' : 's'}` : ''}${incoming.planner ? ' and a meal plan' : ''}.</p><p class="hint" style="margin-top:8px"><b>Merge</b> adds them to what’s here (same recipes are updated). <b>Replace</b> wipes this device first.</p>`,
+      footer:`<button class="btn" data-close>Cancel</button><button class="btn danger" data-mode="replace">Replace</button><button class="btn primary" data-mode="merge">Merge</button>`,
+      onOpen:(m, close) => $$('[data-mode]', m).forEach(b => b.onclick = () => {
+        if(b.dataset.mode === 'replace'){ state = Object.assign(clone(DEFAULT_STATE), incoming, { recipes: recs.map(normRecipe), prefs: Object.assign({}, DEFAULT_STATE.prefs, incoming.prefs || {}) }); }
+        else {
+          for(const r of recs){ const n = normRecipe(r); const i = state.recipes.findIndex(x => String(x.id) === n.id); if(i >= 0) state.recipes[i] = n; else state.recipes.push(n); state.deleted = state.deleted.filter(d => d !== n.id); }
+          for(const [id, m2] of Object.entries(incoming.meta || {})) state.meta[id] = Object.assign({}, state.meta[id] || {}, m2);
+          for(const it of (incoming.shopping || [])) if(!state.shopping.some(s => s.id === it.id)) state.shopping.push(it);
+          for(const [d, meals] of Object.entries(incoming.planner || {})){ const day = (state.planner[d] ||= {}); for(const [k, arr] of Object.entries(meals)) day[k] = [...(day[k] || []), ...arr.filter(e => !(day[k] || []).some(x => JSON.stringify(x) === JSON.stringify(e)))]; }
+        }
+        invalidate(); save(); applyTheme(); close(); toast(`Imported ${recs.length} recipe${recs.length === 1 ? '' : 's'}`); route();
+      }) });
+  };
+  reader.readAsText(file);
+}
+
+/* ========================== Timers ================================ */
+let timers = [], audioCtx = null, timerTick = null;
+function ensureAudio(){ try{ audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)(); if(audioCtx.state === 'suspended') audioCtx.resume(); }catch(e){} }
+function chime(){
+  if(!audioCtx) return;
+  const t0 = audioCtx.currentTime;
+  [0, .22, .44, 1.1, 1.32, 1.54].forEach((d, i) => {
+    const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+    o.type = 'sine'; o.frequency.value = [880, 1108.7, 1318.5][i % 3];
+    g.gain.setValueAtTime(0.0001, t0+d); g.gain.exponentialRampToValueAtTime(0.35, t0+d+0.02); g.gain.exponentialRampToValueAtTime(0.0001, t0+d+0.5);
+    o.connect(g).connect(audioCtx.destination); o.start(t0+d); o.stop(t0+d+0.55);
+  });
+}
+const fmtClock = s => { s = Math.max(0, Math.ceil(s)); const h = Math.floor(s/3600), m = Math.floor(s%3600/60), x = s%60; return h ? `${h}:${String(m).padStart(2,'0')}:${String(x).padStart(2,'0')}` : `${m}:${String(x).padStart(2,'0')}`; };
+function startTimer(minutes, label, key){
+  ensureAudio();
+  const existing = timers.find(t => t.key === key && !t.done);
+  if(existing){ stopTimer(existing.id); return; }
+  timers.push({ id: uid(), key, label, end: Date.now() + minutes*60000, total: minutes*60, done:false, rang:0 });
+  if(navigator.vibrate) try{ navigator.vibrate(30); }catch(e){}
+  if(!timerTick) timerTick = setInterval(tickTimers, 250);
+  tickTimers(); toast(`${fmtTime(minutes)} timer started`);
+}
+function stopTimer(id){ timers = timers.filter(t => t.id !== id); tickTimers(); if(!timers.length){ clearInterval(timerTick); timerTick = null; document.title = state.prefs.name; } }
+function tickTimers(){
+  const now = Date.now();
+  for(const t of timers){
+    const left = (t.end - now) / 1000;
+    if(!t.done && left <= 0){ t.done = true; t.doneAt = now; toast(`⏰ Time’s up: ${t.label}`, { timeout:8000 }); }
+    if(t.done && (now - (t.lastRing || 0)) > 4000 && t.rang < 15){ t.lastRing = now; t.rang++; chime(); if(navigator.vibrate) try{ navigator.vibrate([400,150,400,150,400]); }catch(e){} }
+  }
+  const dock = $('#timerDock');
+  const html = timers.map(t => `<div class="tdock ${t.done ? 'done' : ''}" data-tid="${t.id}"><span>${icon('timer')}</span><span style="display:flex;flex-direction:column;min-width:0"><span class="time">${t.done ? 'Done!' : fmtClock((t.end - now)/1000)}</span><span class="lbl">${esc(t.label)}</span></span><button class="icon-btn" data-action="timer-stop" data-id="${t.id}" aria-label="${t.done ? 'Dismiss' : 'Cancel'} timer: ${esc(t.label)}">${icon(t.done ? 'check' : 'x', 'sm')}</button></div>`).join('');
+  if(dock.dataset.sig !== timers.map(t => t.id + t.done).join()){ dock.innerHTML = html; dock.dataset.sig = timers.map(t => t.id + t.done).join(); }
+  else timers.forEach(t => { const el = dock.querySelector(`[data-tid="${t.id}"] .time`); if(el) el.textContent = t.done ? 'Done!' : fmtClock((t.end - now)/1000); });
+  const doneAny = timers.some(t => t.done);
+  document.title = doneAny ? '⏰ Timer done!' : timers.length ? `${fmtClock(Math.min(...timers.map(t => (t.end - now)/1000)))} · ${state.prefs.name}` : state.prefs.name;
+  refreshTimerChips();
+}
+function refreshTimerChips(){
+  const now = Date.now();
+  $$('[data-action="timer"]').forEach(b => {
+    const key = `${b.dataset.rid || (currentRecipeId())}:${b.dataset.step}`;
+    const t = timers.find(x => x.key === key);
+    b.classList.toggle('running', !!t);
+    const span = b.querySelector('span:last-child') || b;
+    const txt = t ? (t.done ? 'Done! Tap to dismiss' : `${fmtClock((t.end - now)/1000)} – tap to cancel`) : (b.classList.contains('big') ? `Start ${fmtTime(+b.dataset.min)} timer` : `Start ${fmtTime(+b.dataset.min)} timer`);
+    if(span.textContent !== txt) span.textContent = txt;
+  });
+}
+function currentRecipeId(){ const m = location.hash.match(/^#\/recipe\/(.+)$/); return cook.open ? cook.id : m ? decodeURIComponent(m[1]) : ''; }
+
+/* ============================ Cook mode =========================== */
+const cook = { open:false, id:null, i:0, wake:null, touch:null };
+function openCook(id, start = 0){
+  const r = getRecipe(id); if(!r || !r.steps.length) return;
+  Object.assign(cook, { open:true, id, i:start });
+  const el = $('#cook'); el.hidden = false; document.body.style.overflow = 'hidden'; document.body.classList.add('cooking');
+  renderCook(0); requestWake(); ensureAudio();
+  $('#cookNext')?.focus();
+}
+function closeCook(){
+  cook.open = false; $('#cook').hidden = true; $('#cook').innerHTML = ''; document.body.style.overflow = ''; document.body.classList.remove('cooking');
+  releaseWake(); closeDrawer();
+  const r = getRecipe(cook.id); if(r && location.hash.startsWith('#/recipe/')) route();
+}
+async function requestWake(){
+  try{ if('wakeLock' in navigator){ cook.wake = await navigator.wakeLock.request('screen'); cook.wake.addEventListener('release', () => updateWake()); } }catch(e){ cook.wake = null; }
+  updateWake();
+}
+function releaseWake(){ try{ cook.wake && cook.wake.release(); }catch(e){} cook.wake = null; }
+function updateWake(){ const w = $('#wakeInd'); if(!w) return; const on = cook.wake && !cook.wake.released; w.classList.toggle('on', !!on); w.lastChild.textContent = on ? 'Screen stays on' : ('wakeLock' in navigator ? 'Screen may sleep' : 'Keep-awake not supported'); }
+document.addEventListener('visibilitychange', () => { if(cook.open && document.visibilityState === 'visible') requestWake(); });
+function renderCook(dir){
+  const r = getRecipe(cook.id), el = $('#cook'); if(!r) return closeCook();
+  const n = r.steps.length, finished = cook.i >= n;
+  const s = r.steps[Math.min(cook.i, n-1)];
+  const mins = s.timerMinutes || detectTimer(s.text);
+  el.innerHTML = `
+    <div class="cook-head">
+      <button class="icon-btn outline" data-action="cook-close" aria-label="Exit cook mode">${icon('x')}</button>
+      <div class="title"><b>${esc(r.title)}</b><span>${finished ? 'All done' : `Step ${cook.i+1} of ${n}`}</span></div>
+      <span class="wake" id="wakeInd" title="Keep-awake status"><i></i><span>…</span></span>
+      <button class="btn sm" data-action="cook-ing" aria-haspopup="dialog" aria-label="Ingredients">${icon('list','sm')}<span>Ingredients</span></button>
+    </div>
+    <div class="cook-progress" role="progressbar" aria-valuemin="0" aria-valuemax="${n}" aria-valuenow="${Math.min(cook.i+1, n)}" aria-label="Progress"><span style="width:${finished ? 100 : ((cook.i+1)/n*100)}%"></span></div>
+    <div class="cook-stage" id="cookStage" aria-live="polite">
+      ${finished ? `<div class="cook-step finish ${dir > 0 ? 'from-right' : 'from-left'}"><div class="big" aria-hidden="true">🍽️</div><h2 class="cook-text" style="font-weight:600">Enjoy your ${esc(r.title)}!</h2><p class="note">Mark it as cooked to keep track of your favourites.</p><div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center"><button class="btn primary" data-action="cook-done">${icon('done')}I cooked this</button><button class="btn" data-action="cook-close">Close</button></div></div>`
+      : `<div class="cook-step ${dir > 0 ? 'from-right' : dir < 0 ? 'from-left' : ''}">
+        <div class="cook-num">Step ${cook.i+1}</div>
+        <p class="cook-text">${stepTextHTML(s.text)}</p>
+        ${mins ? `<div class="cook-timer"><button class="btn primary big timer-cook" data-action="timer" data-rid="${esc(r.id)}" data-step="${cook.i}" data-min="${mins}" data-label="${esc(r.title)} · step ${cook.i+1}">${icon('timer')}<span>Start ${fmtTime(mins)} timer</span></button></div>` : ''}
+      </div>`}
+    </div>
+    <div class="cook-foot">
+      <button class="btn" data-action="cook-prev" ${cook.i === 0 ? 'disabled' : ''}>${icon('left')}Previous</button>
+      ${finished ? '' : `<button class="btn primary" id="cookNext" data-action="cook-next">${cook.i === n-1 ? 'Finish' : 'Next'}${icon('right')}</button>`}
+    </div>`;
+  updateWake(); refreshTimerChips();
+  const stage = $('#cookStage');
+  stage.addEventListener('touchstart', e => { const t = e.changedTouches[0]; cook.touch = { x:t.clientX, y:t.clientY }; }, { passive:true });
+  stage.addEventListener('touchend', e => { if(!cook.touch) return; const t = e.changedTouches[0], dx = t.clientX - cook.touch.x, dy = t.clientY - cook.touch.y; cook.touch = null; if(Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)*1.3) cookStep(dx < 0 ? 1 : -1); }, { passive:true });
+}
+function cookStep(d){ const r = getRecipe(cook.id); if(!r) return; const n = r.steps.length; const ni = Math.max(0, Math.min(n, cook.i + d)); if(ni === cook.i) return; cook.i = ni; renderCook(d); if(navigator.vibrate) try{ navigator.vibrate(10); }catch(e){} }
+function openDrawer(){
+  const r = getRecipe(cook.id); if(!r) return;
+  closeDrawer();
+  const back = document.createElement('div'); back.className = 'drawer-back'; back.id = 'drawerBack';
+  const d = document.createElement('aside'); d.className = 'drawer'; d.id = 'drawer'; d.setAttribute('role','dialog'); d.setAttribute('aria-label','Ingredients');
+  const s = ui.servings[r.id] || r.servings;
+  d.innerHTML = `<div class="grab"></div><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px"><h2 style="font-size:1.4rem">Ingredients</h2><button class="icon-btn" data-action="drawer-close" aria-label="Close ingredients">${icon('x')}</button></div>${s ? `<p class="note" style="margin-bottom:6px">For ${s} serving${s === 1 ? '' : 's'}</p>` : ''}<div>${ingredientsHTML(r)}</div>`;
+  back.onclick = closeDrawer;
+  $('#cook').append(back, d);
+  d.querySelector('[data-action="drawer-close"]').focus();
+}
+function closeDrawer(){ $('#drawer')?.remove(); $('#drawerBack')?.remove(); }
+
+/* ============================ Random ============================= */
+function randomRecipe(){
+  const list = location.hash.replace(/^#\/?/, '') === '' ? filtered() : allRecipes();
+  const pool = list.length ? list : allRecipes(); if(!pool.length) return;
+  const others = pool.length > 1 ? pool.filter(r => !location.hash.includes(encodeURIComponent(r.id))) : pool;
+  const r = others[Math.floor(Math.random() * others.length)];
+  toast(`How about ${r.title}?`); go('#/recipe/' + encodeURIComponent(r.id));
+}
+
+/* ============================ Events ============================= */
+document.addEventListener('click', async e => {
+  const a = e.target.closest('[data-action]'); if(!a) return;
+  const act = a.dataset.action;
+  const rid = currentRecipeId();
+  switch(act){
+    case 'toggle-theme': state.prefs.theme = effectiveTheme() === 'dark' ? 'light' : 'dark'; save(); applyTheme(); if(location.hash === '#/more') renderMore(); break;
+    case 'focus-search': if(location.hash.replace(/^#\/?/, '') !== ''){ go('#/'); } setTimeout(() => $('#q')?.focus(), 60); break;
+    case 'random': randomRecipe(); break;
+    case 'import': $('#importFile').click(); break;
+    case 'export': exportBackup(); break;
+    case 'export-builtin': {
+      const list = allRecipes().map(r => { const o = {}; for(const k of ['id','title','description','category','cuisine','tags','servings','prepTime','cookTime','difficulty','ingredients','steps','tips','photo','source','dateAdded','favourite']) o[k] = r[k]; return o; });
+      download(`built-in-recipes-${todayISO()}.js`, `const BUILT_IN_RECIPES = ${JSON.stringify(list, null, 2)};\n`, 'text/javascript'); toast('Exported – paste it over the BUILT_IN_RECIPES line'); break; }
+    case 'erase': if(await confirmDialog({ title:'Erase everything?', message:'This deletes all recipes added on this device, your notes, planner and shopping list. Export a backup first if you might want them back.', confirmText:'Erase everything', danger:true })){ const prefs = state.prefs; state = clone(DEFAULT_STATE); state.prefs = prefs; invalidate(); save(); toast('All data erased'); go('#/'); } break;
+    case 'set-theme': state.prefs.theme = a.dataset.t; save(); applyTheme(); renderMore(); break;
+    case 'set-units': state.prefs.units = a.dataset.u; ui.units = null; save(); renderMore(); break;
+    case 'clear-filters': ui.q = ''; ui.cat = 'all'; ui.tag = ''; renderLibrary(); break;
+    case 'fav': { e.preventDefault(); const id = a.dataset.id, r = getRecipe(id); if(!r) break; setFav(id, !r.favourite);
+      const on = !r.favourite; $$(`[data-action="fav"][data-id="${CSS.escape(id)}"]`).forEach(b => { b.setAttribute('aria-pressed', on); b.setAttribute('aria-label', (on ? 'Remove from' : 'Add to') + ' favourites' + (b.classList.contains('fav-btn') ? ': ' + r.title : '')); if(b.classList.contains('fav-inline')){ b.style.color = on ? '#E0473A' : ''; const svg = b.querySelector('svg'); svg.style.fill = on ? 'currentColor' : ''; } });
+      toast(on ? 'Added to favourites' : 'Removed from favourites'); if(ui.cat === 'fav' && $('#results')) updateResults(); break; }
+    case 'tag': e.preventDefault(); ui.tag = a.dataset.tag; ui.cat = 'all'; ui.q = ''; go('#/'); break;
+    case 'serv': { const r = getRecipe(rid); if(!r) break; const cur = ui.servings[r.id] || r.servings; ui.servings[r.id] = Math.max(1, Math.min(99, cur + +a.dataset.d)); refreshIngredients(r); break; }
+    case 'units': ui.units = a.dataset.u; { const r = getRecipe(rid); if(r) { refreshIngredients(r); $$('.seg [data-action="units"]').forEach(b => b.setAttribute('aria-pressed', b.dataset.u === ui.units)); $$('.steps li').forEach((li, i) => { const p = li.querySelector('.step-text'); if(p) p.innerHTML = `<span class="sr-only">Step ${i+1}: </span>` + stepTextHTML(r.steps[i].text); }); } } break;
+    case 'cook': openCook(rid); break;
+    case 'cooked': markCooked(rid); break;
+    case 'add-shop': { const r = getRecipe(rid); if(!r) break; const s = ui.servings[r.id] || r.servings; const n = addRecipeToShopping(r, s); save(); updateChrome(); toast(`Added ${n} ingredient${n === 1 ? '' : 's'}${s ? ` for ${s}` : ''} to your list`, { action:{ label:'View list', fn:() => go('#/shopping') } }); break; }
+    case 'plan-recipe': { const r = getRecipe(rid); if(r) planRecipeDialog(r); break; }
+    case 'print': window.print(); break;
+    case 'share-recipe': { const r = getRecipe(rid); if(r) shareText(r.title, recipeAsText(r)); break; }
+    case 'timer': { const key = `${a.dataset.rid || rid}:${a.dataset.step}`; const t = timers.find(x => x.key === key); if(t) stopTimer(t.id); else startTimer(+a.dataset.min, a.dataset.label, key); break; }
+    case 'timer-stop': stopTimer(a.dataset.id); break;
+    case 'cook-close': closeCook(); break;
+    case 'cook-next': cookStep(1); break;
+    case 'cook-prev': cookStep(-1); break;
+    case 'cook-ing': openDrawer(); break;
+    case 'drawer-close': closeDrawer(); $('[data-action="cook-ing"]')?.focus(); break;
+    case 'cook-done': { const id = cook.id; closeCook(); markCooked(id); break; }
+    case 'shop-del': state.shopping = state.shopping.filter(i => i.id !== a.dataset.id); save(); renderShopping(); updateChrome(); break;
+    case 'shop-clear-ticked': state.shopping = state.shopping.filter(i => !i.checked); save(); renderShopping(); updateChrome(); toast('Ticked items cleared'); break;
+    case 'shop-clear-all': if(await confirmDialog({ title:'Clear the whole list?', message:'All items will be removed from your shopping list.', confirmText:'Clear list', danger:true })){ const old = state.shopping; state.shopping = []; save(); renderShopping(); updateChrome(); toast('List cleared', { action:{ label:'Undo', fn:() => { state.shopping = old; save(); renderShopping(); updateChrome(); } } }); } break;
+    case 'shop-share': shareText('Shopping list', shoppingText()); break;
+    case 'shop-copy': toast(await copyText(shoppingText()) ? 'Copied to clipboard' : 'Couldn’t copy', {}); break;
+    case 'week': ui.weekOffset = +a.dataset.d === 0 ? 0 : ui.weekOffset + +a.dataset.d; renderPlanner(); break;
+    case 'plan-add': planAddDialog(a.dataset.date, a.dataset.meal); break;
+    case 'plan-del': { const arr = state.planner[a.dataset.date]?.[a.dataset.meal]; if(arr){ arr.splice(+a.dataset.i, 1); save(); renderPlanner(); } break; }
+    case 'week-shop': { let n = 0, recipes = 0; for(const d of weekDays(ui.weekOffset)){ const plan = state.planner[isoDate(d)] || {}; for(const [k] of MEALS) for(const e2 of (plan[k] || [])){ const r = e2.recipeId && getRecipe(e2.recipeId); if(r){ n += addRecipeToShopping(r, e2.servings || r.servings); recipes++; } } }
+      save(); updateChrome(); toast(recipes ? `Added ingredients from ${recipes} meal${recipes === 1 ? '' : 's'}` : 'No recipes planned this week', { action: recipes ? { label:'View list', fn:() => go('#/shopping') } : null }); break; }
+    case 'week-clear': if(await confirmDialog({ title:'Clear this week?', message:'Everything planned for this week will be removed.', confirmText:'Clear week', danger:true })){ for(const d of weekDays(ui.weekOffset)) delete state.planner[isoDate(d)]; save(); renderPlanner(); } break;
+    case 'parse': { const v = $('#pasteIn').value; applyParsed(parseRecipeText(v)); break; }
+    case 'paste-clip': try{ const t = await navigator.clipboard.readText(); $('#pasteIn').value = t; applyParsed(parseRecipeText(t)); }catch(err){ toast('Clipboard not available – paste into the box instead', { error:true }); $('#pasteIn').focus(); } break;
+    case 'cancel-form': if(!draftDirty || await confirmDialog({ title:'Discard changes?', message:'Your unsaved changes will be lost.', confirmText:'Discard', danger:true })){ draftDirty = false; draftIsNew ? go('#/') : go('#/recipe/' + encodeURIComponent(draft.id)); } break;
+    case 'delete-recipe': if(await confirmDialog({ title:`Delete “${draft.title}”?`, message:'This recipe, its notes and cooking history will be permanently deleted from this device.', confirmText:'Delete recipe', danger:true })){ deleteRecipe(draft.id); draftDirty = false; toast('Recipe deleted'); go('#/'); } break;
+    default: if(/^(i|g|s)-(add|del|up|down)$|^photo-remove$/.test(act)) formStructural(act, a);
+  }
+});
+function refreshIngredients(r){
+  const box = $('#ingList'); if(box) box.innerHTML = ingredientsHTML(r);
+  const out = $('.stepper output'); const s = ui.servings[r.id] || r.servings; if(out) out.textContent = `${s} serving${s === 1 ? '' : 's'}`;
+}
+document.addEventListener('change', e => {
+  const t = e.target;
+  if(t.dataset.tick){ const set = ui.ticks[t.dataset.rid] || (ui.ticks[t.dataset.rid] = new Set()); t.checked ? set.add(t.dataset.tick) : set.delete(t.dataset.tick); $$(`[data-tick="${t.dataset.tick}"][data-rid="${CSS.escape(t.dataset.rid)}"]`).forEach(x => x.checked = t.checked); }
+  if(t.dataset.shop){ const it = state.shopping.find(i => i.id === t.dataset.shop); if(it){ it.checked = t.checked; save(); updateChrome(); setTimeout(renderShopping, 260); } }
+  if(t.id === 'importFile' && t.files[0]){ importBackup(t.files[0]); t.value = ''; }
+});
+document.addEventListener('keydown', e => {
+  const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName) || document.activeElement?.isContentEditable;
+  if(e.key === 'Escape'){
+    if(modalStack.length){ modalStack[modalStack.length-1].close(); return; }
+    if($('#drawer')){ closeDrawer(); return; }
+    if(cook.open){ closeCook(); return; }
+  }
+  if(cook.open && !modalStack.length){
+    if(e.key === 'ArrowRight' || (e.key === ' ' && !typing && document.activeElement?.tagName !== 'BUTTON')){ e.preventDefault(); cookStep(1); }
+    else if(e.key === 'ArrowLeft'){ e.preventDefault(); cookStep(-1); }
+    return;
+  }
+  if(e.key === '/' && !typing && !modalStack.length && !e.metaKey && !e.ctrlKey){
+    e.preventDefault();
+    if(location.hash.replace(/^#\/?/, '') !== '') go('#/');
+    setTimeout(() => { const q = $('#q'); if(q){ q.focus(); q.select(); } }, 30);
+  }
+});
+window.addEventListener('scroll', () => $('.topbar')?.classList.toggle('scrolled', scrollY > 4), { passive:true });
+window.addEventListener('beforeunload', e => { if(draftDirty && /^#\/(new|edit)/.test(location.hash)){ e.preventDefault(); e.returnValue = ''; } });
+window.addEventListener('hashchange', () => { if(cook.open) closeCook(); while(modalStack.length) modalStack[modalStack.length-1].close(); route(); });
+window.addEventListener('storage', e => { if(e.key === STORE_KEY){ state = load(); invalidate(); route(); } });
+
+/* ============================== Init ============================= */
+applyTheme(); setupIcons(); route();
+// Expose a tiny API for debugging/testing in the console.
+window.Cookbook = { get state(){ return state; }, allRecipes, parseRecipeText, parseIngredientLine, fmtNum, convert };
+})();
+</script>
+</body>
+</html>
